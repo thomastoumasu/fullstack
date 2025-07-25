@@ -1,4 +1,47 @@
 0.
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server. 
-A server can be created using Java Spring , Python Flask or Ruby on Rails to name just a few examples.
+A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.
 The example uses Express library with Node.js. This course will use Node.js and Express to create web servers.
+curl https://studies.cs.helsinki.fi/exampleapp/new_note  -d "note=AV USigma"  --ssl-no-revoke
+
+1.
+In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces.
+when writing JSX, the tag needs to be closed:
+First letter of React component names must be capitalized
+it is forbidden in React to mutate state directly, so use .concat (returns new copy) instead of .push on arrays
+
+2.
+use ids, not array indices, as keys in rendering lists
+control the form input with state
+———————————————————————————————
+source JSON on server
+
+browser state fetched from server: only once on first render using useEffect(, [])
+
+tempVariable from button input (aka button “display buffer” state)
+(button onClick: () => irgendwas)
+	-> post / put / delete this tempVariable to server
+	-> wait for response, set browser state with response (not from tempVariable), using setState
+—————————————————————————————
+useEffect(() => {}, [currency]) not useEffect(, currency)
+in React use className= instead of class= to use in .css (aka ‘class selector’)
+or use style= within a component, filling with a js object (aka ‘inline style’)
+setTimeout(()=>{something}, 0) to defer something until the stack is clear
+https://www.youtube.com/watch?v=8aGhZQkoFbQ
+
+3. 
+We will be building our backend on top of NodeJS, which is a JavaScript runtime based on Google's Chrome V8 JavaScript engine.
+Browsers do not yet support all of JavaScript's newest features. Due to this fact, a lot of code run in browsers has been transpiled from a newer version of JavaScript to an older, more compatible version.
+Today, the most popular way to do transpiling is by using Babel. Transpilation is automatically configured in React applications created with Vite.
+The situation with JavaScript running in the backend is different. The newest version of Node supports a large majority of the latest features of JavaScript, so we can use the latest features without having to transpile our code.
+400 is bad request (i.e. content missing)
+do not forget return if post request but not because of something
+watch for header content type not specified
+return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request
+	< 400 is no error
+Putting front into backend simple: first in frontend fetch service change url to relative, then npm run build to generate a dist folder with frontend production code, then copy this to backend folder
+	then app.use(express.static('dist')) in backend
+f... Mangodb
+mongodb+srv://thomastoumasu:fujifuji@cluster0.hmhtqmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+mongodb+srv://thomastoumasu:fujifuji@cluster0.hmhtqmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
