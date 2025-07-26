@@ -45,3 +45,5 @@ f... Mangodb
 mongodb+srv://thomastoumasu:fujifuji@cluster0.hmhtqmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 mongodb+srv://thomastoumasu:fujifuji@cluster0.hmhtqmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
+curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes
+
