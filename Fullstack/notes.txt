@@ -34,15 +34,18 @@ We will be building our backend on top of NodeJS, which is a JavaScript runtime 
 Browsers do not yet support all of JavaScript's newest features. Due to this fact, a lot of code run in browsers has been transpiled from a newer version of JavaScript to an older, more compatible version.
 Today, the most popular way to do transpiling is by using Babel. Transpilation is automatically configured in React applications created with Vite.
 The situation with JavaScript running in the backend is different. The newest version of Node supports a large majority of the latest features of JavaScript, so we can use the latest features without having to transpile our code.
-400 is bad request (i.e. content missing)
-do not forget return if post request but not because of something
 watch for header content type not specified
 return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request
-	< 400 is no error
-Putting front into backend simple: first in frontend fetch service change url to relative, then npm run build to generate a dist folder with frontend production code, then copy this to backend folder
+  < 400 is no error
+  400 is bad request (i.e. content missing)
+do not forget return if post request but not because of something
+--Putting front into backend simple: first in frontend fetch service change url to relative, then npm run build to generate a dist folder with frontend production code, then copy this to backend folder
 	then app.use(express.static('dist')) in backend
-f... Mangodb
-mongodb+srv://thomastoumasu:fujifuji@cluster0.hmhtqmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+--connecting to database:
+ (log in to account: f... Mangodb)
+ add url (mongodb+srv://thomastoumasu:pw@cluster0.hmhtqmw.mongodb.net/phonebook?retryWrites=true&w=majority&appName=Cluster0) in .env
+ in ./models/person.js connect, create schema and model, overwrite toJSON, export model
+
 mongodb+srv://thomastoumasu:fujifuji@cluster0.hmhtqmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes
