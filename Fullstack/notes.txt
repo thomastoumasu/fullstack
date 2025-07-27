@@ -29,6 +29,9 @@ or use style= within a component, filling with a js object (aka â€˜inline styleâ
 setTimeout(()=>{something}, 0) to defer something until the stack is clear
 https://www.youtube.com/watch?v=8aGhZQkoFbQ
 
+curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes
+
+
 3. 
 We will be building our backend on top of NodeJS, which is a JavaScript runtime based on Google's Chrome V8 JavaScript engine.
 Browsers do not yet support all of JavaScript's newest features. Due to this fact, a lot of code run in browsers has been transpiled from a newer version of JavaScript to an older, more compatible version.
@@ -38,6 +41,7 @@ watch for header content type not specified
 return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request
   < 400 is no error
   400 is bad request (i.e. content missing)
+	delete ok, return 200, delete but was not found, return 204
 do not forget return if post request but not because of something
 --Putting front into backend simple: first in frontend fetch service change url to relative, then npm run build to generate a dist folder with frontend production code, then copy this to backend folder
 	then app.use(express.static('dist')) in backend
@@ -46,7 +50,6 @@ do not forget return if post request but not because of something
  add url (mongodb+srv://thomastoumasu:pw@cluster0.hmhtqmw.mongodb.net/phonebook?retryWrites=true&w=majority&appName=Cluster0) in .env
  in ./models/person.js connect, create schema and model, overwrite toJSON, export model
 
-mongodb+srv://thomastoumasu:fujifuji@cluster0.hmhtqmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+If you're having issues with content.body being undefined for seemingly no reason, make sure you didn't forget to add app.use(express.json()) near the top of the file.
 
-curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes
 
