@@ -40,8 +40,11 @@ The situation with JavaScript running in the backend is different. The newest ve
 watch for header content type not specified
 return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request
   < 400 is no error
-  400 is bad request (i.e. content missing)
-	delete ok, return 200, delete but was not found, return 204
+  201 created (post)
+  204 not found (delete ok, return 204 and content, delete but was not found, return 204 and nothing)
+     or now: delete ok, return 200, delete but was not found, return 204
+  400 is bad request (i.e. content missing, bad id)
+	
 do not forget return if post request but not because of something
 --Putting front into backend simple: first in frontend fetch service change url to relative, then npm run build to generate a dist folder with frontend production code, then copy this to backend folder
 	then app.use(express.static('dist')) in backend
