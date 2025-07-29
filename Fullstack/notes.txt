@@ -2,7 +2,9 @@
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server. 
 A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.
 The example uses Express library with Node.js. This course will use Node.js and Express to create web servers.
+
 curl https://studies.cs.helsinki.fi/exampleapp/new_note  -d "note=AV USigma"  --ssl-no-revoke
+curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes
 
 1.
 In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces.
@@ -27,15 +29,11 @@ useEffect(() => {}, [currency]) not useEffect(, currency)
 in React use className= instead of class= to use in .css (aka ‘class selector’)
 or use style= within a component, filling with a js object (aka ‘inline style’)
 setTimeout(()=>{something}, 0) to defer something until the stack is clear
-https://www.youtube.com/watch?v=8aGhZQkoFbQ
-
-curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes
-
+ https://www.youtube.com/watch?v=8aGhZQkoFbQ
 
 3. 
 We will be building our backend on top of NodeJS, which is a JavaScript runtime based on Google's Chrome V8 JavaScript engine.
-Browsers do not yet support all of JavaScript's newest features. Due to this fact, a lot of code run in browsers has been transpiled from a newer version of JavaScript to an older, more compatible version.
-Today, the most popular way to do transpiling is by using Babel. Transpilation is automatically configured in React applications created with Vite.
+Browsers do not yet support all of JavaScript's newest features. Due to this fact, a lot of code run in browsers has been transpiled from a newer version of JavaScript to an older, more compatible version. Today, the most popular way to do transpiling is by using Babel. Transpilation is automatically configured in React applications created with Vite.
 The situation with JavaScript running in the backend is different. The newest version of Node supports a large majority of the latest features of JavaScript, so we can use the latest features without having to transpile our code.
 watch for header content type not specified
 return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request
@@ -50,21 +48,21 @@ do not forget return if post request but not because of something
 	then app.use(express.static('dist')) in backend
 --connecting to database:
  (log in to account: f... Mangodb)
- add url (mongodb+srv://thomastoumasu:pw@cluster0.hmhtqmw.mongodb.net/phonebook?retryWrites=true&w=majority&appName=Cluster0) in .env
+ add url (mongodb+srv://thomastoumasu:pw@cluster0.hmhtqmw.mongodb.net/phonebook?retryWrites=true&w=majority&appName=Cluster0) in .env (dev mode) or in render
  in ./models/person.js connect, create schema and model, overwrite toJSON, export model
 If you're having issues with content.body being undefined for seemingly no reason, make sure you didn't forget to add app.use(express.json()) near the top of the file.
 
 4. testing backend
--best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b)
+-best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b) 
 -Separate (4a) the (f.e. Express) app and the code taking care of the web server. One of the advantages of this method is that the application can now be tested at the level of HTTP API calls without actually making calls via HTTP over the network, this makes the execution of tests faster.
  MONGOURL, PORT to utils/config
  console.log to utils/logger
  db model to models/blog
  routes to controllers/blogs, in index.js app.use('/api/blogs', blogsRouter)
  middelware to utils/middelware
--Use supertest to test separated app:  
+-Use supertest (as a dev dependency) to test separated app:  
 (if the server is not already listening for connections then it is bound to an ephemeral port for you so there is no need to keep track of ports. In other words, supertest takes care that the application being tested is started at the port that it uses internally.)
-useful functions to generate test input: const api = supertest(app), then f.e. await api.get('/api/notes').expect(200).expect('Content-Type', /application\/json/)
+useful functions to generate test input and check api output: const api = supertest(app), then f.e. await api.get('/api/notes').expect(200).expect('Content-Type', /application\/json/)
 -get rid of try catch with require('express-async-errors'). If an exception occurs in an async route, the execution is automatically passed to the error-handling middleware.
 multiple async calls: await Promise.all(arrayOfPromises), with arrayOfPromises = arrayOfNotes.map(note => note.save())
 
