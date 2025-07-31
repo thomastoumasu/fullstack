@@ -65,6 +65,7 @@ multiple async calls: await Promise.all(arrayOfPromises), with arrayOfPromises =
   204 not found (delete ok, return 204 and no content, delete but was not found, return 410 gone)
      or now: delete ok, return 204 and content, delete but was not found, return 204 and nothing
   400 is bad request (i.e. content missing, bad id)
+  401 unauthorized (see below)
 do not forget return if post request but not because of something
 watch for header content type not specified
 use validation from mongoose (returns 400 if post input does not match criteria)
@@ -74,8 +75,10 @@ There is a one-to-many relationship between the user (User) and notes (Note): on
 If relational database the implementation is straightforward: Both resources would have their separate database tables, and the id of the user who created a note would be stored in the notes table as a foreign key.
 If document database, different modelling ways:
  note stores id of user
- or user stores ids of notes (here we use this form)
- or both
+ or user stores ids of notes 
+ or both (here we use this form)
  or only one collection user that has a notes property: an array of note objects (notes would be tightly nested under users and the database would not generate ids for them)
+
+Ensure username is unique: uniqueness index from mongoose validation. But caution: when adding a uniqueness index, make sure that the database is in a healthy state (if there are already documents in the database that violate the uniqueness condition, no index will be created.). And returns MongoServerError, not ValidationError.
 
 
