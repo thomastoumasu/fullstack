@@ -35,15 +35,6 @@ setTimeout(()=>{something}, 0) to defer something until the stack is clear
 We will be building our backend on top of NodeJS, which is a JavaScript runtime based on Google's Chrome V8 JavaScript engine.
 Browsers do not yet support all of JavaScript's newest features. Due to this fact, a lot of code run in browsers has been transpiled from a newer version of JavaScript to an older, more compatible version. Today, the most popular way to do transpiling is by using Babel. Transpilation is automatically configured in React applications created with Vite.
 The situation with JavaScript running in the backend is different. The newest version of Node supports a large majority of the latest features of JavaScript, so we can use the latest features without having to transpile our code.
-watch for header content type not specified
-return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request
-  < 400 is no error
-  201 created (post)
-  204 not found (delete ok, return 204 and content, delete but was not found, return 204 and nothing)
-     or now: delete ok, return 200, delete but was not found, return 204
-  400 is bad request (i.e. content missing, bad id)
-	
-do not forget return if post request but not because of something
 --Putting front into backend simple: first in frontend fetch service change url to relative, then npm run build to generate a dist folder with frontend production code, then copy this to backend folder
 	then app.use(express.static('dist')) in backend
 --connecting to database:
@@ -51,6 +42,7 @@ do not forget return if post request but not because of something
  add url (mongodb+srv://thomastoumasu:pw@cluster0.hmhtqmw.mongodb.net/phonebook?retryWrites=true&w=majority&appName=Cluster0) in .env (dev mode) or in render
  in ./models/person.js connect, create schema and model, overwrite toJSON, export model
 If you're having issues with content.body being undefined for seemingly no reason, make sure you didn't forget to add app.use(express.json()) near the top of the file.
+note backend: https://github.com/fullstack-hy2020/part3-notes-backend
 
 4. testing backend
 -best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b) 
@@ -60,10 +52,30 @@ If you're having issues with content.body being undefined for seemingly no reaso
  db model to models/blog
  routes to controllers/blogs, in index.js app.use('/api/blogs', blogsRouter)
  middelware to utils/middelware
+- npm run test with test: node --test
+  then in write tests in tests/bla.test.js: const { test } = require('node:test')
 -Use supertest (as a dev dependency) to test separated app:  
 (if the server is not already listening for connections then it is bound to an ephemeral port for you so there is no need to keep track of ports. In other words, supertest takes care that the application being tested is started at the port that it uses internally.)
 useful functions to generate test input and check api output: const api = supertest(app), then f.e. await api.get('/api/notes').expect(200).expect('Content-Type', /application\/json/)
 -get rid of try catch with require('express-async-errors'). If an exception occurs in an async route, the execution is automatically passed to the error-handling middleware.
 multiple async calls: await Promise.all(arrayOfPromises), with arrayOfPromises = arrayOfNotes.map(note => note.save())
+-return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request
+  < 400 is no error
+  201 created (post)
+  204 not found (delete ok, return 204 and no content, delete but was not found, return 410 gone)
+     or now: delete ok, return 204 and content, delete but was not found, return 204 and nothing
+  400 is bad request (i.e. content missing, bad id)
+do not forget return if post request but not because of something
+watch for header content type not specified
+use validation from mongoose (returns 400 if post input does not match criteria)
+
+4c design database note - user  https://fullstackopen.com/en/part4/user_administration
+There is a one-to-many relationship between the user (User) and notes (Note): one user has many notes.
+If relational database the implementation is straightforward: Both resources would have their separate database tables, and the id of the user who created a note would be stored in the notes table as a foreign key.
+If document database, different modelling ways:
+ note stores id of user
+ or user stores ids of notes (here we use this form)
+ or both
+ or only one collection user that has a notes property: an array of note objects (notes would be tightly nested under users and the database would not generate ids for them)
 
 
