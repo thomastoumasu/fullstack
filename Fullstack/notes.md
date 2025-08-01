@@ -72,10 +72,28 @@ multiple async calls: await Promise.all(arrayOfPromises), with arrayOfPromises =
   204 not found (delete ok, return 204 and no content, delete but was not found, return 410 gone)  
      or now: delete ok, return 204 and content, delete but was not found, return 204 and nothing  
   400 is bad request (i.e. content missing, bad id)  
-  401 unauthorized (see below)  
+  401 unauthorized (see below)
+  410 gone (for example for delete)
 do not forget return if post request but not because of something  
 watch for header content type not specified  
-use validation from mongoose (returns 400 if post input does not match criteria)  
+use validation from mongoose (returns 400 if post input does not match criteria)
+error handling:
+-from own code:
+usersRouter.post('/', async (request, response) => {
+  const body = request.body
+  if (!Object.hasOwn(body, 'username') || body.username.length < 3) {
+    // response.statusMessage = 'username or password missing'
+    return response.status(400).json({ error: 'username or password missing' })
+  }
+-from for example mongoose validation:
+in middleware.js :
+const errorHandler = (error, request, response, next) => {
+ if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message }) // bad request
+  }
+- test both like
+const result = await api.post('/api/users/').send(tooShortUsernameUser)
+assert(result.body.error.includes('both username and password must contain at least 3 characters'))
   
 4c design database note - user  https://fullstackopen.com/en/part4/user_administration  
 There is a one-to-many relationship between the user (User) and notes (Note): one user has many notes.  
