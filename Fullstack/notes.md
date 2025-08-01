@@ -1,3 +1,5 @@
+javascript: primitive types are copied by value, objects by reference.
+
 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
 A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.  
