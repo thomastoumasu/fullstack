@@ -44,7 +44,8 @@ The situation with JavaScript running in the backend is different. The newest ve
 If you're having issues with content.body being undefined for seemingly no reason, make sure you didn't forget to add app.use(express.json()) near the top of the file.  
 note backend: https://github.com/fullstack-hy2020/part3-notes-backend  
 
-4. testing backend  
+4.
+testing backend  
 --best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b)   
 --Separate (4a) the (f.e. Express) app and the code taking care of the web server. One of the advantages of this method is that the application can now be tested at the level of HTTP API calls without actually making calls via HTTP over the network, this makes the execution of tests faster.  
  MONGOURL, PORT to utils/config  
