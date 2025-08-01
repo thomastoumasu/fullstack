@@ -45,25 +45,25 @@ If you're having issues with content.body being undefined for seemingly no reaso
 note backend: https://github.com/fullstack-hy2020/part3-notes-backend  
 
 4. testing backend  
--best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b)   
--Separate (4a) the (f.e. Express) app and the code taking care of the web server. One of the advantages of this method is that the application can now be tested at the level of HTTP API calls without actually making calls via HTTP over the network, this makes the execution of tests faster.  
+--best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b)   
+--Separate (4a) the (f.e. Express) app and the code taking care of the web server. One of the advantages of this method is that the application can now be tested at the level of HTTP API calls without actually making calls via HTTP over the network, this makes the execution of tests faster.  
  MONGOURL, PORT to utils/config  
  console.log to utils/logger  
  db model to models/blog  
  routes to controllers/blogs, in index.js app.use('/api/blogs', blogsRouter)  
  middelware to utils/middelware  
--intuition: test emulates frontend requests to the backend and checks:  
+--intuition: test emulates frontend requests to the backend and checks:  
 -responses (status, content, some header)   
 -changes in database  
-<img src="./test.jpg" alt="intuition test" style="height: 100px; width:100px;"/>
-- npm run test with test: node --test  
+<img src="./test.jpg" alt="intuition test" style="height:300px; width:300px;"/>
+--npm run test with test: node --test  
   then in write tests in tests/bla.test.js: const { test } = require('node:test')  
--Use supertest (as a dev dependency) to test separated app:    
+--Use supertest (as a dev dependency) to test separated app:    
 (if the server is not already listening for connections then it is bound to an ephemeral port for you so there is no need to keep track of ports. In other words, supertest takes care that the application being tested is started at the port that it uses internally.)  
 useful functions to generate test input and check api output: const api = supertest(app), then f.e. await api.get('/api/notes').expect(200).expect('Content-Type', /application\/json/)  
--get rid of try catch with require('express-async-errors'). If an exception occurs in an async route, the execution is automatically passed to the error-handling middleware.  
+--get rid of try catch with require('express-async-errors'). If an exception occurs in an async route, the execution is automatically passed to the error-handling middleware.  
 multiple async calls: await Promise.all(arrayOfPromises), with arrayOfPromises = arrayOfNotes.map(note => note.save())  
--return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request  
+--return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request  
   < 400 is no error  
   201 created (post)  
   204 not found (delete ok, return 204 and no content, delete but was not found, return 410 gone)  
