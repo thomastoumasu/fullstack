@@ -1,88 +1,88 @@
-0.
-In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server. 
-A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.
-The example uses Express library with Node.js. This course will use Node.js and Express to create web servers.
+0.  
+In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
+A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.  
+The example uses Express library with Node.js. This course will use Node.js and Express to create web servers.  
 
-curl https://studies.cs.helsinki.fi/exampleapp/new_note  -d "note=AV USigma"  --ssl-no-revoke
-curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes
+curl https://studies.cs.helsinki.fi/exampleapp/new_note  -d "note=AV USigma"  --ssl-no-revoke  
+curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes  
 
-1.
-In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces.
-when writing JSX, the tag needs to be closed:
-First letter of React component names must be capitalized
-it is forbidden in React to mutate state directly, so use .concat (returns new copy) instead of .push on arrays
+1.  
+In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces.  
+when writing JSX, the tag needs to be closed:  
+First letter of React component names must be capitalized  
+it is forbidden in React to mutate state directly, so use .concat (returns new copy) instead of .push on arrays  
 
-2.
-use ids, not array indices, as keys in rendering lists
-control the form input with state
+2.  
+use ids, not array indices, as keys in rendering lists  
+control the form input with state  
 ———————————————————————————————
-source JSON on server
-
-browser state fetched from server: only once on first render using useEffect(, [])
-
-tempVariable from button input (aka button “display buffer” state)
-(button onClick: () => irgendwas)
-	-> post / put / delete this tempVariable to server
-	-> wait for response, set browser state with response (not from tempVariable), using setState
+source JSON on server  
+  
+browser state fetched from server: only once on first render using useEffect(, [])  
+  
+tempVariable from button input (aka button “display buffer” state)  
+(button onClick: () => irgendwas)  
+	-> post / put / delete this tempVariable to server  
+	-> wait for response, set browser state with response (not from tempVariable), using setState  
 —————————————————————————————
-useEffect(() => {}, [currency]) not useEffect(, currency)
-in React use className= instead of class= to use in .css (aka ‘class selector’)
-or use style= within a component, filling with a js object (aka ‘inline style’)
-setTimeout(()=>{something}, 0) to defer something until the stack is clear
- https://www.youtube.com/watch?v=8aGhZQkoFbQ
+useEffect(() => {}, [currency]) not useEffect(, currency)  
+in React use className= instead of class= to use in .css (aka ‘class selector’)  
+or use style= within a component, filling with a js object (aka ‘inline style’)  
+setTimeout(()=>{something}, 0) to defer something until the stack is clear  
+ https://www.youtube.com/watch?v=8aGhZQkoFbQ  
 
 3. 
-We will be building our backend on top of NodeJS, which is a JavaScript runtime based on Google's Chrome V8 JavaScript engine.
+We will be building our backend on top of NodeJS, which is a JavaScript runtime based on Google's Chrome V8 JavaScript engine.  
 Browsers do not yet support all of JavaScript's newest features. Due to this fact, a lot of code run in browsers has been transpiled from a newer version of JavaScript to an older, more compatible version. Today, the most popular way to do transpiling is by using Babel. Transpilation is automatically configured in React applications created with Vite.
-The situation with JavaScript running in the backend is different. The newest version of Node supports a large majority of the latest features of JavaScript, so we can use the latest features without having to transpile our code.
---Putting front into backend simple: first in frontend fetch service change url to relative, then npm run build to generate a dist folder with frontend production code, then copy this to backend folder
-	then app.use(express.static('dist')) in backend
---connecting to database:
- (log in to account: f... Mangodb)
- add url (mongodb+srv://thomastoumasu:pw@cluster0.hmhtqmw.mongodb.net/phonebook?retryWrites=true&w=majority&appName=Cluster0) in .env (dev mode) or in render
- in ./models/person.js connect, create schema and model, overwrite toJSON, export model
-If you're having issues with content.body being undefined for seemingly no reason, make sure you didn't forget to add app.use(express.json()) near the top of the file.
-note backend: https://github.com/fullstack-hy2020/part3-notes-backend
+The situation with JavaScript running in the backend is different. The newest version of Node supports a large majority of the latest features of JavaScript, so we can use the latest features without having to transpile our code.  
+--Putting front into backend simple: first in frontend fetch service change url to relative, then npm run build to generate a dist folder with frontend production code, then copy this to backend folder  
+	then app.use(express.static('dist')) in backend  
+--connecting to database:  
+ (log in to account: f... Mangodb)  
+ add url (mongodb+srv://thomastoumasu:pw@cluster0.hmhtqmw.mongodb.net/phonebook?retryWrites=true&w=majority&appName=Cluster0) in .env (dev mode) or in render  
+ in ./models/person.js connect, create schema and model, overwrite toJSON, export model  
+If you're having issues with content.body being undefined for seemingly no reason, make sure you didn't forget to add app.use(express.json()) near the top of the file.  
+note backend: https://github.com/fullstack-hy2020/part3-notes-backend  
 
-4. testing backend
--best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b) 
--Separate (4a) the (f.e. Express) app and the code taking care of the web server. One of the advantages of this method is that the application can now be tested at the level of HTTP API calls without actually making calls via HTTP over the network, this makes the execution of tests faster.
- MONGOURL, PORT to utils/config
- console.log to utils/logger
- db model to models/blog
- routes to controllers/blogs, in index.js app.use('/api/blogs', blogsRouter)
- middelware to utils/middelware
--intuition: test emulates frontend requests to the backend and checks:
--responses (status, content, some header) 
--changes in database
-![test intuition](./test.jpg "intuition test")
-- npm run test with test: node --test
-  then in write tests in tests/bla.test.js: const { test } = require('node:test')
--Use supertest (as a dev dependency) to test separated app:  
-(if the server is not already listening for connections then it is bound to an ephemeral port for you so there is no need to keep track of ports. In other words, supertest takes care that the application being tested is started at the port that it uses internally.)
-useful functions to generate test input and check api output: const api = supertest(app), then f.e. await api.get('/api/notes').expect(200).expect('Content-Type', /application\/json/)
--get rid of try catch with require('express-async-errors'). If an exception occurs in an async route, the execution is automatically passed to the error-handling middleware.
-multiple async calls: await Promise.all(arrayOfPromises), with arrayOfPromises = arrayOfNotes.map(note => note.save())
--return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request
-  < 400 is no error
-  201 created (post)
-  204 not found (delete ok, return 204 and no content, delete but was not found, return 410 gone)
-     or now: delete ok, return 204 and content, delete but was not found, return 204 and nothing
-  400 is bad request (i.e. content missing, bad id)
-  401 unauthorized (see below)
-do not forget return if post request but not because of something
-watch for header content type not specified
-use validation from mongoose (returns 400 if post input does not match criteria)
+4. testing backend  
+-best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b)   
+-Separate (4a) the (f.e. Express) app and the code taking care of the web server. One of the advantages of this method is that the application can now be tested at the level of HTTP API calls without actually making calls via HTTP over the network, this makes the execution of tests faster.  
+ MONGOURL, PORT to utils/config  
+ console.log to utils/logger  
+ db model to models/blog  
+ routes to controllers/blogs, in index.js app.use('/api/blogs', blogsRouter)  
+ middelware to utils/middelware  
+-intuition: test emulates frontend requests to the backend and checks:  
+-responses (status, content, some header)   
+-changes in database  
+<img src="./test.jpg" alt="intuition test" style="height: 100px; width:100px;"/>
+- npm run test with test: node --test  
+  then in write tests in tests/bla.test.js: const { test } = require('node:test')  
+-Use supertest (as a dev dependency) to test separated app:    
+(if the server is not already listening for connections then it is bound to an ephemeral port for you so there is no need to keep track of ports. In other words, supertest takes care that the application being tested is started at the port that it uses internally.)  
+useful functions to generate test input and check api output: const api = supertest(app), then f.e. await api.get('/api/notes').expect(200).expect('Content-Type', /application\/json/)  
+-get rid of try catch with require('express-async-errors'). If an exception occurs in an async route, the execution is automatically passed to the error-handling middleware.  
+multiple async calls: await Promise.all(arrayOfPromises), with arrayOfPromises = arrayOfNotes.map(note => note.save())  
+-return code: https://www.rfc-editor.org/rfc/rfc9110.html#name-400-bad-request  
+  < 400 is no error  
+  201 created (post)  
+  204 not found (delete ok, return 204 and no content, delete but was not found, return 410 gone)  
+     or now: delete ok, return 204 and content, delete but was not found, return 204 and nothing  
+  400 is bad request (i.e. content missing, bad id)  
+  401 unauthorized (see below)  
+do not forget return if post request but not because of something  
+watch for header content type not specified  
+use validation from mongoose (returns 400 if post input does not match criteria)  
+  
+4c design database note - user  https://fullstackopen.com/en/part4/user_administration  
+There is a one-to-many relationship between the user (User) and notes (Note): one user has many notes.  
+If relational database the implementation is straightforward: Both resources would have their separate database tables, and the id of the user who created a note would be stored in the notes table as a foreign key.  
+If document database, different modelling ways:  
+ note stores id of user  
+ or user stores ids of notes   
+ or both (here we use this form)  
+ or only one collection user that has a notes property: an array of note objects (notes would be tightly nested under users and the database would not generate ids for them)  
 
-4c design database note - user  https://fullstackopen.com/en/part4/user_administration
-There is a one-to-many relationship between the user (User) and notes (Note): one user has many notes.
-If relational database the implementation is straightforward: Both resources would have their separate database tables, and the id of the user who created a note would be stored in the notes table as a foreign key.
-If document database, different modelling ways:
- note stores id of user
- or user stores ids of notes 
- or both (here we use this form)
- or only one collection user that has a notes property: an array of note objects (notes would be tightly nested under users and the database would not generate ids for them)
-
-Ensure username is unique: uniqueness index from mongoose validation. But caution: when adding a uniqueness index, make sure that the database is in a healthy state (if there are already documents in the database that violate the uniqueness condition, no index will be created.). And returns MongoServerError, not ValidationError.
+Ensure username is unique: uniqueness index from mongoose validation. But caution: when adding a uniqueness index, make sure that the database is in a healthy state (if there are already documents in the database that violate the uniqueness condition, no index will be created.). And returns MongoServerError, not ValidationError.  
 
 
