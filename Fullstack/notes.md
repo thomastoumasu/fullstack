@@ -76,7 +76,7 @@ multiple async calls: await Promise.all(arrayOfPromises), with arrayOfPromises =
   410 gone (for example for delete)
 do not forget return if post request but not because of something  
 watch for header content type not specified  
-use validation from mongoose (returns 400 if post input does not match criteria)
+use validation from mongoose (returns 400 if post input does not match criteria)  
 error handling:  
 -from own code:  
 usersRouter.post('/', async (request, response) => {  
