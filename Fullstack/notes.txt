@@ -55,7 +55,7 @@ note backend: https://github.com/fullstack-hy2020/part3-notes-backend
 -intuition: test emulates frontend requests to the backend and checks:
 -responses (status, content, some header) 
 -changes in database
-![test intuition](test.jpg "intuition test")
+![test intuition](./test.jpg "intuition test")
 - npm run test with test: node --test
   then in write tests in tests/bla.test.js: const { test } = require('node:test')
 -Use supertest (as a dev dependency) to test separated app:  
