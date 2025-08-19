@@ -29,7 +29,7 @@ app.use(express.json())
 // This middleware takes the raw data from the requests that are stored in the request object, parses it into a JavaScript object and assigns it to the request object as a new property body.
 
 app.use(middleware.requestLogger)
-app.use(middleware.tokenExtractor)
+// app.use(middleware.tokenExtractor)
 
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)

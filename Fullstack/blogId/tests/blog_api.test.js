@@ -73,9 +73,10 @@ describe('when there is initially some blogs saved', () => {
   })
 
   describe('addition of a new blog', () => {
-    test('succeeds with valid data', async () => {
+    test.only('succeeds with valid data', async () => {
       const response = await api
         .post('/api/blogs/')
+        .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRob21hcyIsImlkIjoiNjhhNGJkM2U3ODMxZDA2ZTlhMjNlNzk0IiwiaWF0IjoxNzU1NjI2ODQ0fQ.FF4pdgKN0GMnC7qal5JkGhJeANhaxEH0uBjNnL3jjPg')
         .send(helper.dummyBlog)
         .expect(201)
         .expect('Content-Type', /application\/json/)

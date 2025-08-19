@@ -21,7 +21,7 @@ describe('when there is initially one user saved', () => {
     await user.save()
   })
 
-  test.only('user is correctly returned as json', async () => {
+  test('user is correctly returned as json', async () => {
     const response = await api
       .get('/api/users')
       .expect(200)
