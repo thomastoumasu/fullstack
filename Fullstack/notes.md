@@ -105,7 +105,35 @@ If document database, different modelling ways:
  or both (here we use this form)  
  or only one collection user that has a notes property: an array of note objects (notes would be tightly nested under users and the database would not generate ids for them)  
 
-Ensure username is unique: uniqueness index from mongoose validation. But caution: when adding a uniqueness index, make sure that the database is in a healthy state (if there are already documents in the database that violate the uniqueness condition, no index will be created.). And returns MongoServerError, not ValidationError.  
+Ensure username is unique: uniqueness index from mongoose validation. But caution: when adding a uniqueness index, make sure that the database is in a healthy state (if there are already documents in the database that violate the uniqueness condition, no index will be created.). And returns MongoServerError, not ValidationError. 
+
+4d token
+```mermaid
+sequenceDiagram
+	participant user
+    participant browser
+    participant backend
+
+    user->>browser: login button pressed
+    Note left of user: User fills in login form with username and pw
+
+    browser->>backend: POST api/login [username, pw]
+    activate backend
+    Note left of backend: backend generates a TOKEN that identifies the user
+    backend-->>browser: TOKEN returned as message body
+    deactivate backend
+	Note left of browser: browser saves the TOKEN
+
+    user->>browser: create note button pressed
+    Note left of user: User creates a note
+
+    browser->>backend: POST api/notes [content] TOKEN in header
+    activate backend
+    Note left of backend: backend identifies the user from the token
+    backend-->>browser: 201 created
+    deactivate backend
+```
+
 
 
 
