@@ -1,3 +1,15 @@
+toRead
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+
+https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch3.md
+
+https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based-authentication#how-token-based-works
+
+https://medium.com/techtrument/multithreading-javascript-46156179cf9a
+
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 javascript: primitive types are copied by value, objects by reference.
 Lodash library for operations on objects
 
@@ -134,6 +146,7 @@ sequenceDiagram
     deactivate backend
 ```
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
+
 
 
 
