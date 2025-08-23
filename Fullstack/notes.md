@@ -26,7 +26,7 @@ In practice, JSX is much like HTML with the distinction that with JSX you can ea
 when writing JSX, the tag needs to be closed.  
 First letter of React component names must be capitalized.  
 it is forbidden in React to mutate state directly, so use .concat (returns new copy) instead of .push on arrays.  
-infinite loop: <button onClick={() => { props.likeBlog(props.blog.id) }}> rather than <button onClick={likeBlog(props.blog.id)}>  
+infinite loop: `<button onClick={() => { props.likeBlog(props.blog.id) }}>` rather than `<button onClick={likeBlog(props.blog.id)}>`  
 
 2.  check minFetch
 use ids, not array indices, as keys in rendering lists  
@@ -147,6 +147,7 @@ sequenceDiagram
     deactivate backend
 ```
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
+
 
 
 
