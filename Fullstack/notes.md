@@ -22,11 +22,16 @@ curl https://studies.cs.helsinki.fi/exampleapp/new_note  -d "note=AV USigma"  --
 curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes  
 
 1.  
-In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces.  
-when writing JSX, the tag needs to be closed. 
+In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces.
+
+when writing JSX, the tag needs to be closed.
+
 First letter of React component names must be capitalized.
+
 it is forbidden in React to mutate state directly, so use .concat (returns new copy) instead of .push on arrays.
+
 infinite loop: <button onClick={() => { props.likeBlog(props.blog.id) }}>, not <button onClick={likeBlog(props.blog.id)}>
+
 
 3.  check minFetch
 use ids, not array indices, as keys in rendering lists  
@@ -147,6 +152,7 @@ sequenceDiagram
     deactivate backend
 ```
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
+
 
 
 
