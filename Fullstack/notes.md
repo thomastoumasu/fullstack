@@ -11,7 +11,12 @@ https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
 
 javascript: primitive types are copied by value, objects by reference.
-Lodash library for operations on objects
+Lodash library for operations on objects  
+
+VSode:
+"editor.formatOnPaste": true
+copy line down command d
+
 
 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
@@ -147,6 +152,12 @@ sequenceDiagram
     deactivate backend
 ```
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
+
+5 frontend tests
+jsdom library simulates a web browser
+-check if text is displayed
+-check if handlers are called when user clickes button
+
 
 
 
