@@ -1,5 +1,7 @@
 toRead
 
+https://hackernoon.com/flaky-tests-a-war-that-never-ends-9aa32fdef359  
+
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
 
 https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch3.md
@@ -154,9 +156,11 @@ sequenceDiagram
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
 
 5 frontend tests
-jsdom library simulates a web browser
--check if text is displayed
--check if handlers are called when user clickes button
+jsdom library simulates a web browser  
+-check if text is displayed  
+-check if handlers are called when user clicks button  
+-check that handlers pass the right information  
+
 
 
 
