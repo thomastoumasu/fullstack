@@ -161,7 +161,10 @@ jsdom library simulates a web browser
 -check if handlers are called when user clicks button  
 -check that handlers pass the right information  
 end2end test  
--use .locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element
+-use  
+	page.locator('.error')  
+	.locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element
+
 
 
 
