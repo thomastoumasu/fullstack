@@ -29,13 +29,14 @@ curl https://studies.cs.helsinki.fi/exampleapp/new_note  -d "note=AV USigma"  --
 curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes  
 
 1.  
-In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces.  
-when writing JSX, the tag needs to be closed.  
+React components (like const App = () => <></>) are technically JavaScript functions. They return jsx (looks like html markup, but in fact stuff that is compiled by Babel into js).
+In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces. The idea of JSX is quite similar to many templating languages, such as Thymeleaf used along with Java Spring, which are used on servers.  
+JSX is "XML-like", which means that every tag needs to be closed.  
 First letter of React component names must be capitalized.  
 it is forbidden in React to mutate state directly, so use .concat (returns new copy) instead of .push on arrays.  
 infinite loop: `<button onClick={() => { props.likeBlog(props.blog.id) }}>` rather than `<button onClick={likeBlog(props.blog.id)}>`  
 
-2.  check minFetch
+3.  check minFetch
 use ids, not array indices, as keys in rendering lists  
 control the form input with state  
 ———————————————————————————————
@@ -67,8 +68,9 @@ The situation with JavaScript running in the backend is different. The newest ve
 If you're having issues with content.body being undefined for seemingly no reason, make sure you didn't forget to add app.use(express.json()) near the top of the file.  
 note backend: https://github.com/fullstack-hy2020/part3-notes-backend  
 
-4.
-testing backend  check minBackendwTests, check blogList
+4.  
+testing js: There are a large number of test libraries, or test runners, available for JavaScript. The old king of test libraries is Mocha, which was replaced a few years ago by Jest. A newcomer to the libraries is Vitest, which bills itself as a new generation of test libraries. Nowadays, Node also has a built-in test library node:test, which is well suited to the needs of the course. https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing#testing-node-applications  
+testing backend: use supertest to test the API.  check minBackendwTests, check blogList
 --best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b)   
 --Separate (4a) the (f.e. Express) app and the code taking care of the web server. One of the advantages of this method is that the application can now be tested at the level of HTTP API calls without actually making calls via HTTP over the network, this makes the execution of tests faster.  
  MONGOURL, PORT to utils/config  
@@ -164,6 +166,7 @@ end2end test
 -use  
 	page.locator('.error')  
 	.locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element
+
 
 
 
