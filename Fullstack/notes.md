@@ -157,7 +157,7 @@ sequenceDiagram
 ```
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
 
-5 frontend tests
+5. frontend tests
 jsdom library simulates a web browser  
 -check if text is displayed  
 -check if handlers are called when user clicks button  
@@ -165,7 +165,15 @@ jsdom library simulates a web browser
 end2end test  
 -use  
 	page.locator('.error')  
-	.locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element
+	.locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element  
+
+6. Redux
+in main.jsx, import noteReducer from './reducers/noteReducer'   const store = createStore(noteReducer) and render App inside <Provider store={store}>
+then in App.jsx import useSelector, useDispatch and use them as   const dispatch = useDispatch()  dispatch(createNote(content)),   const notes = useSelector(state => state)
+with export const createNote = content => { return ({ type: 'NEW_NOTE', payload: {}  }) } in reducer.js
+
+
+
 
 
 
