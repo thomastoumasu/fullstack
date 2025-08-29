@@ -174,6 +174,14 @@ Then in all components below can access state and actions
 in main.jsx, import noteReducer from './reducers/noteReducer'   const store = createStore(noteReducer) and render App inside /<Provider store={store}>
 then in App.jsx import useSelector, useDispatch from 'react-redux' and use them as   const dispatch = useDispatch()  dispatch(createNote(content)),   const notes = useSelector(state => state)
 with export const createNote = content => { return ({ type: 'NEW_NOTE', payload: {}  }) } in reducer.js
+multiple states: be careful, actions get dispatched to everyone
+const reducer = combineReducers({
+  notes: noteReducer,
+  filter: filterReducer
+})
+
+const store = createStore(reducer)
+
 
 
 
