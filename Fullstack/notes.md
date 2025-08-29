@@ -157,7 +157,8 @@ sequenceDiagram
 ```
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
 
-5. frontend tests
+5. frontend tests with react-testing-library
+Also using user-event from i
 jsdom library simulates a web browser  
 -check if text is displayed  
 -check if handlers are called when user clicks button  
@@ -167,10 +168,13 @@ end2end test
 	page.locator('.error')  
 	.locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element  
 
-6. Redux
-in main.jsx, import noteReducer from './reducers/noteReducer'   const store = createStore(noteReducer) and render App inside <Provider store={store}>
-then in App.jsx import useSelector, useDispatch and use them as   const dispatch = useDispatch()  dispatch(createNote(content)),   const notes = useSelector(state => state)
+7. Redux
+Declare a store, make it available with Provider  
+Then in all components below can access state and actions  
+in main.jsx, import noteReducer from './reducers/noteReducer'   const store = createStore(noteReducer) and render App inside /<Provider store={store}>
+then in App.jsx import useSelector, useDispatch from 'react-redux' and use them as   const dispatch = useDispatch()  dispatch(createNote(content)),   const notes = useSelector(state => state)
 with export const createNote = content => { return ({ type: 'NEW_NOTE', payload: {}  }) } in reducer.js
+
 
 
 
