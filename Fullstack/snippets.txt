@@ -64,3 +64,4 @@ else { // do nothing  if user cancels
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 --sort
 .sort((a, b) => b.votes - a.votes)
+[...anecdotes].sort((a, b) => b.votes - a.votes)  if the original array is immutable: make a copy of it
