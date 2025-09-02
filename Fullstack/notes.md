@@ -17,8 +17,17 @@ Lodash library for operations on objects
 
 VSode:
 "editor.formatOnPaste": true
-copy line down command d
+copy line down command d  
 
+.then(  
+.catch(  
+  
+or try {  
+await   
+} catch (exception) {  
+}  
+
+JSON.parse(loggedUserJSON)  
 
 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
@@ -35,6 +44,8 @@ JSX is "XML-like", which means that every tag needs to be closed.
 First letter of React component names must be capitalized.  
 it is forbidden in React to mutate state directly, so use .concat (returns new copy) instead of .push on arrays.  
 infinite loop: `<button onClick={() => { props.likeBlog(props.blog.id) }}>` rather than `<button onClick={likeBlog(props.blog.id)}>`  
+props von React components have to be ({blog})
+export default Togglable for components, not  { Togglable }  
 
 3.  check minFetch
 use ids, not array indices, as keys in rendering lists  
@@ -168,9 +179,10 @@ end2end test
 	page.locator('.error')  
 	.locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element  
 
-7. Redux
+7. Redux  
 Declare a store, make it available with Provider  
-Then in all components below can access state and actions  
+Then in all components below can access state and actions
+Without toolkit:  
 in main.jsx, import noteReducer from './reducers/noteReducer'   const store = createStore(noteReducer) and render App inside /<Provider store={store}>
 then in App.jsx import useSelector, useDispatch from 'react-redux' and use them as   const dispatch = useDispatch()  dispatch(createNote(content)),   const notes = useSelector(state => state)
 with export const createNote = content => { return ({ type: 'NEW_NOTE', payload: {}  }) } in reducer.js
@@ -179,8 +191,9 @@ const reducer = combineReducers({
   notes: noteReducer,
   filter: filterReducer
 })
+const store = createStore(reducer)  
+with toolkit: just define action creators, can also put the async stuff in it to cleanly separe frontend from state/getdata stuff (cf. ex 6.10-13, redux_anecdotes)  
 
-const store = createStore(reducer)
 
 
 
