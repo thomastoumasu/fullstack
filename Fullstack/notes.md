@@ -192,7 +192,30 @@ const reducer = combineReducers({
   filter: filterReducer
 })
 const store = createStore(reducer)  
-with toolkit: just define action creators, can also put the async stuff in it to cleanly separe frontend from state/getdata stuff (cf. ex 6.10-13, redux_anecdotes)  
+with toolkit: just define action creators, can also put the async stuff in it to cleanly separe frontend from state/getdata stuff (cf. ex 6.10-19, redux_anecdotes)
+
+
+react-query:  
+```mermaid
+sequenceDiagram
+	participant user
+    participant browser
+    participant backend
+
+	Note left of browser: in App, const result = useQuery({ queryFn: getNotes }) <br> in getNotes of requests.js, axios.get
+	browser->>backend: GET notes
+	backend-->>browser: notes returned as response.data
+	Note left of browser: in App, const notes = result.data
+
+    user->>browser: addNote button pressed
+    Note left of user: User fills in form with new note
+    browser->>backend: POST notes 
+	Note left of browser: in button onClick handler, newNoteMutation.mutate(newNote) <br> in newNoteMutation, createNote of requests.js <br> in createNote, axios.post
+    Note right of backend: json-server mutates data and returns added note back
+    backend-->>browser: newNote returned as response.data
+	Note left of browser: in newNoteMutation onSuccess: queryClient.invalidateQueries({ queryKey: ['notes'] }) <br> or queryClient.getQueryData and set with concat(newNote)
+```
+
 
 
 
