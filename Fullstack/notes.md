@@ -179,7 +179,11 @@ end2end test
 	page.locator('.error')  
 	.locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element  
 
-7. Redux  
+redux (with react-redux) vs. useReducer (with context): https://blog.isquaredsoftware.com/2021/01/context-redux-differences/  
+Context + useReducer relies on passing the current state value via Context. React-Redux passes the current Redux store instance via Context.  
+That means that when useReducer produces a new state value, all components that are subscribed to that context will be forced to re-render, even if they only care about part of the data. This may lead to performances issues, depending on the size of the state value, how many components are subscribed to that data, and how often they re-render.  
+With React-Redux, components can subscribe to specific pieces of the store state, and only re-render when those values change.  
+6. Redux  
 Declare a store, make it available with Provider  
 Then in all components below can access state and actions
 Without toolkit:  
@@ -215,6 +219,9 @@ sequenceDiagram
     backend-->>browser: newNote returned as response.data
 	Note left of browser: in newNoteMutation onSuccess: queryClient.invalidateQueries({ queryKey: ['notes'] }) <br> or queryClient.getQueryData and set with concat(newNote)
 ```
+
+context: see context_counter
+
 
 
 
