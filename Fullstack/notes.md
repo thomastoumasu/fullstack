@@ -19,6 +19,9 @@ VSode:
 "editor.formatOnPaste": true
 copy line down command d  
 
+really do not forget e.preventDefault() for form onSubmit
+really do not forget export default ReactComponent
+
 .then(  
 .catch(  
   
@@ -221,6 +224,7 @@ sequenceDiagram
 ```
 
 context: see context_counter
+
 
 
 
