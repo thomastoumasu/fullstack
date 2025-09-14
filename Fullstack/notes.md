@@ -32,6 +32,8 @@ await
 
 JSON.parse(loggedUserJSON)  
 
+check server.js in -react-query_anecdotes for json-server
+
 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
 A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.  
@@ -223,7 +225,16 @@ sequenceDiagram
 	Note left of browser: in newNoteMutation onSuccess: queryClient.invalidateQueries({ queryKey: ['notes'] }) <br> or queryClient.getQueryData and set with concat(newNote)
 ```
 
+So the application retrieves data from the server and renders it on the screen without using the React hooks useState and useEffect at all.   
+Also:  after the POST or PUT request that causes the notes change, the application makes a new GET request to retrieve the query data from the server (with invalidateQueries). Or, to optimize performance, can just update the local state of the query with the returned data of the callback function.  
+React Query is a server-state library, that maintains the server state in the frontend, i.e. acts as a cache for what is stored on the server. It can in some cases eliminate the need for data on the server to be saved in the frontend state. Usually need additionaly some solution for how the rest of the frontend state (e.g. the state of forms or notifications) is handled, this can be useState or context with useReducer or redux.  
+Redux is a client-state librariy that can be used to store asynchronous data
+
 context: see context_counter
+
+
+
+
 
 
 
