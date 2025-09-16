@@ -12,15 +12,11 @@ https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
 
-javascript: primitive types are copied by value, objects by reference.
-Lodash library for operations on objects  
-
-VSode:
-"editor.formatOnPaste": true
-copy line down command d  
-
-really do not forget e.preventDefault() for form onSubmit
-really do not forget export default ReactComponent
+javascript: primitive types are copied by value, objects by reference. See blogListBackend blogs.js, blogRouter.post('/')  
+Lodash library for operations on objects   
+  
+really do not forget e.preventDefault() for form onSubmit  
+really do not forget export default ReactComponent  
 
 .then(  
 .catch(  
@@ -30,9 +26,22 @@ await
 } catch (exception) {  
 }  
 
+When separed component: also separate handler in two parts, component sends back something up.  See BlogListFrontend_query_routed BlogForm.jsx  
+
+const notifyWith = useNotify()  
+notifyWith(message)  
+with const useNotify = () => {  
+	bla  
+ 	return (message) => {}  
+}  
+  
 JSON.parse(loggedUserJSON)  
 
-check server.js in -react-query_anecdotes for json-server
+check server.js in -react-query_anecdotes for json-server  
+
+VSode:
+"editor.formatOnPaste": true
+copy line down command d  
 
 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
@@ -231,6 +240,7 @@ React Query is a server-state library, that maintains the server state in the fr
 Redux is a client-state librariy that can be used to store asynchronous data
 
 context: see context_counter
+
 
 
 
