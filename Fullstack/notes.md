@@ -1,4 +1,8 @@
-toRead
+toRead  
+
+https://cybersecuritybase.mooc.fi/descriptions  
+
+css https://flowbite.com/docs/components/navbar/  
 
 https://hackernoon.com/flaky-tests-a-war-that-never-ends-9aa32fdef359  
 
@@ -240,6 +244,7 @@ React Query is a server-state library, that maintains the server state in the fr
 Redux is a client-state librariy that can be used to store asynchronous data
 
 context: see context_counter
+
 
 
 
