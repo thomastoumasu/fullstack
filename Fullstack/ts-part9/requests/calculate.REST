@@ -1,0 +1,14 @@
+
+GET http://localhost:3003/hello
+
+### careful with POST, do not add an empty line before the headers
+POST http://localhost:3003/calculate
+Content-Type: application/json
+
+{
+  "value1": 3,
+  "value2": 2,
+  "op": "bla"
+}
+
+###
