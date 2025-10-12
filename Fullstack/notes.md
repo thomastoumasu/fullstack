@@ -30,6 +30,9 @@ await
 } catch (exception) {  
 }  
 
+if (variable) {
+will be false if variable is undefined, like with someArray.find( and not found - so can use it
+
 When separed component: also separate handler in two parts, component sends back something up.  See BlogListFrontend_query_routed BlogForm.jsx  
 
 const notifyWith = useNotify()  
@@ -244,6 +247,24 @@ React Query is a server-state library, that maintains the server state in the fr
 Redux is a client-state librariy that can be used to store asynchronous data
 
 context: see context_counter
+
+8 Typescript
+useful: custom validator to the request body in ts-flight-diary utils.ts
+type function interface, not necessarily within function
+do not forget to import express, { Request, Response, NextFunction } from "express";
+
+try {
+    const newDiaryEntry = toNewDiaryEntry(req.body);
+    const addedEntry = diaryService.addDiary(newDiaryEntry);
+    res.json(addedEntry);
+  } catch (error: unknown) {
+    let errorMessage = 'Something went wrong :(';
+    if (error instanceof Error) {
+      errorMessage = 'Error: ' + error.message;
+    }
+    res.status(400).send(errorMessage);
+  }
+
 
 
 
