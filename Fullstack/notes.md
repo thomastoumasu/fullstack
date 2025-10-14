@@ -248,7 +248,8 @@ Redux is a client-state librariy that can be used to store asynchronous data
 
 context: see context_counter
 
-8 Typescript
+8 Typescript  
+https://react-typescript-cheatsheet.netlify.app/docs/basic/setup
 useful: custom validator to the request body in ts-flight-diary utils.ts
 type function interface, not necessarily within function
 do not forget to import express, { Request, Response, NextFunction } from "express";
@@ -264,6 +265,7 @@ try {
     }
     res.status(400).send(errorMessage);
   }
+
 
 
 
