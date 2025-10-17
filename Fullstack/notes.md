@@ -21,6 +21,10 @@ Lodash library for operations on objects
   
 really do not forget e.preventDefault() for form onSubmit  
 really do not forget export default ReactComponent  
+to update an object with setState: setPatient({
+              ...patient,
+              entries: patient.entries.concat(addedEntry),
+            });
 
 .then(  
 .catch(  
@@ -265,6 +269,7 @@ try {
     }
     res.status(400).send(errorMessage);
   }
+
 
 
 
