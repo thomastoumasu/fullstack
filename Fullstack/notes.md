@@ -1,5 +1,9 @@
 toRead  
 
+minify code: https://fullstackopen.com/en/part7/webpack#minifying-the-code, useful Libraries 7.e  
+
+backend as a service: directus https://directus.io/docs/tutorials/projects/use-directus-as-a-baby-health-tracker-with-owlet-and-ops-genie  
+
 https://cybersecuritybase.mooc.fi/descriptions  
 
 css https://flowbite.com/docs/components/navbar/  
@@ -252,9 +256,9 @@ Redux is a client-state librariy that can be used to store asynchronous data
 
 context: see context_counter
 
-8 Typescript  
+9 Typescript  
 https://react-typescript-cheatsheet.netlify.app/docs/basic/setup
-useful: custom validator to the request body in ts-flight-diary utils.ts
+useful: zod or custom validator to the request body in ts-flight-diary utils.ts
 type function interface, not necessarily within function
 do not forget to import express, { Request, Response, NextFunction } from "express";
 
@@ -269,6 +273,10 @@ try {
     }
     res.status(400).send(errorMessage);
   }
+
+11 CI
+Jenkins: self hosted, separate server for running the tasks in continuous integration
+
 
 
 
