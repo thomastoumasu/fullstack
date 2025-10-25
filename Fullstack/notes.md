@@ -197,13 +197,14 @@ sequenceDiagram
 ```
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
 
-5. frontend tests with react-testing-library
+5.  frontend tests with react-testing-library or jest
 Also using user-event from i
 jsdom library simulates a web browser  
 -check if text is displayed  
 -check if handlers are called when user clicks button  
 -check that handlers pass the right information  
-end2end test  
+
+end2end test  with playwright https://fullstackopen.com/en/part11/getting_started_with_git_hub_actions#exercises-11-3-11-4  
 -use  
 	page.locator('.error')  
 	.locator('..') (locator accepts not only .css selectors but also XPath selectors) to get the parent element  
@@ -276,6 +277,7 @@ try {
 
 11 CI
 Jenkins: self hosted, separate server for running the tasks in continuous integration
+
 
 
 
