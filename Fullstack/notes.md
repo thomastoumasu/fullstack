@@ -57,6 +57,7 @@ check server.js in -react-query_anecdotes for json-server
 VSode:
 "editor.formatOnPaste": true
 copy line down command d  
+https://medium.com/@robinviktorsson/setting-up-eslint-and-prettier-for-a-typescript-project-aa2434417b8f
 
 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
@@ -277,6 +278,7 @@ try {
 
 11 CI
 Jenkins: self hosted, separate server for running the tasks in continuous integration
+
 
 
 
