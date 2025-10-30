@@ -277,7 +277,9 @@ try {
   }
 
 11 CI
-Jenkins: self hosted, separate server for running the tasks in continuous integration
+Jenkins: self hosted, separate server for running the tasks in continuous integration  
+github actions with yml file: remember how to share variables between jobs (with outputs), do not forget to check out the code (uses: actions/checkout@v4) and use the tools (for example, - uses: actions/setup-node@v4). Example pipeline in Patientor_fullstack.
+
 
 
 
