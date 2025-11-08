@@ -1,25 +1,9 @@
-toRead  
-
-minify code: https://fullstackopen.com/en/part7/webpack#minifying-the-code, useful Libraries 7.e  
-
-backend as a service: directus https://directus.io/docs/tutorials/projects/use-directus-as-a-baby-health-tracker-with-owlet-and-ops-genie  
-
-https://cybersecuritybase.mooc.fi/descriptions  
-
-css https://flowbite.com/docs/components/navbar/  
-
-https://hackernoon.com/flaky-tests-a-war-that-never-ends-9aa32fdef359  
-
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
-
-https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch3.md
-
-https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based-authentication#how-token-based-works
-
-https://medium.com/techtrument/multithreading-javascript-46156179cf9a
-
-https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
-
+## IDE, basics
+/Users/thomas/PycharmProjects/Fullstack  
+https://medium.com/@robinviktorsson/setting-up-eslint-and-prettier-for-a-typescript-project-aa2434417b8f  
+"editor.formatOnPaste": true  
+copy line down command d  
+  
 javascript: primitive types are copied by value, objects by reference. See blogListBackend blogs.js, blogRouter.post('/')  
 Lodash library for operations on objects   
   
@@ -54,12 +38,7 @@ JSON.parse(loggedUserJSON)
 
 check server.js in -react-query_anecdotes for json-server  
 
-VSode:
-"editor.formatOnPaste": true
-copy line down command d  
-https://medium.com/@robinviktorsson/setting-up-eslint-and-prettier-for-a-typescript-project-aa2434417b8f
-
-0.  
+## 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
 A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.  
 The example uses Express library with Node.js. This course will use Node.js and Express to create web servers.  
@@ -67,7 +46,7 @@ The example uses Express library with Node.js. This course will use Node.js and 
 curl https://studies.cs.helsinki.fi/exampleapp/new_note  -d "note=AV USigma"  --ssl-no-revoke  
 curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes  
 
-1.  
+## 1.  
 React components (like const App = () => <></>) are technically JavaScript functions. They return jsx (looks like html markup, but in fact stuff that is compiled by Babel into js).
 In practice, JSX is much like HTML with the distinction that with JSX you can easily embed dynamic content by writing appropriate JavaScript within curly braces. The idea of JSX is quite similar to many templating languages, such as Thymeleaf used along with Java Spring, which are used on servers.  
 JSX is "XML-like", which means that every tag needs to be closed.  
@@ -77,7 +56,7 @@ infinite loop: `<button onClick={() => { props.likeBlog(props.blog.id) }}>` rath
 props von React components have to be ({blog})
 export default Togglable for components, not  { Togglable }  
 
-3.  check minFetch
+## 2.  check minFetch
 use ids, not array indices, as keys in rendering lists  
 control the form input with state  
 ———————————————————————————————
@@ -96,7 +75,7 @@ or use style= within a component, filling with a js object (aka ‘inline style�
 setTimeout(()=>{something}, 0) to defer something until the stack is clear  
  https://www.youtube.com/watch?v=8aGhZQkoFbQ  
 
-3. check phonebook, check minMongodb
+## 3. check phonebook, check minMongodb
 We will be building our backend on top of NodeJS, which is a JavaScript runtime based on Google's Chrome V8 JavaScript engine.  
 Browsers do not yet support all of JavaScript's newest features. Due to this fact, a lot of code run in browsers has been transpiled from a newer version of JavaScript to an older, more compatible version. Today, the most popular way to do transpiling is by using Babel. Transpilation is automatically configured in React applications created with Vite.
 The situation with JavaScript running in the backend is different. The newest version of Node supports a large majority of the latest features of JavaScript, so we can use the latest features without having to transpile our code.  
@@ -109,7 +88,7 @@ The situation with JavaScript running in the backend is different. The newest ve
 If you're having issues with content.body being undefined for seemingly no reason, make sure you didn't forget to add app.use(express.json()) near the top of the file.  
 note backend: https://github.com/fullstack-hy2020/part3-notes-backend  
 
-4.  
+## 4.  
 testing js: There are a large number of test libraries, or test runners, available for JavaScript. The old king of test libraries is Mocha, which was replaced a few years ago by Jest. A newcomer to the libraries is Vitest, which bills itself as a new generation of test libraries. Nowadays, Node also has a built-in test library node:test, which is well suited to the needs of the course. https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing#testing-node-applications  
 testing backend: use supertest to test the API.  check minBackendwTests, check blogList
 --best to run tests using a database that is installed and running on the developer's local machine. The optimal solution would be to have every test execution use a separate database, for example by running Mongo in-memory or by using Docker containers. Here: in test mode change env so use a testNoteApp collection in atlas that is deleted and built again before each test. (4b)   
@@ -198,7 +177,7 @@ sequenceDiagram
 ```
 or server-side session https://fullstackopen.com/en/part4/token_authentication#problems-of-token-based-authentication
 
-5.  frontend tests with react-testing-library or jest
+## 5.  frontend tests with react-testing-library or jest
 Also using user-event from i
 jsdom library simulates a web browser  
 -check if text is displayed  
@@ -258,7 +237,7 @@ Redux is a client-state librariy that can be used to store asynchronous data
 
 context: see context_counter
 
-9 Typescript  
+## 9 Typescript  
 https://react-typescript-cheatsheet.netlify.app/docs/basic/setup
 useful: zod or custom validator to the request body in ts-flight-diary utils.ts
 type function interface, not necessarily within function
@@ -276,15 +255,91 @@ try {
     res.status(400).send(errorMessage);
   }
 
-11 CI
+## 11 CI
 Jenkins: self hosted, separate server for running the tasks in continuous integration  
 github actions with yml file: remember how to share variables between jobs (with outputs), do not forget to check out the code (uses: actions/checkout@v4) and use the tools (for example, - uses: actions/setup-node@v4). Example pipeline in Patientor_fullstack.
 
-12 Container  
+## 12 Container  
+### bash
+https://tkt-lapio.github.io/command-line/  
+shell or cd: home folder. pwd: see path from root folder. root is /. A path that starts with / is absolute, otherwise it is relative.  
+ls -la  
+mkdir  
+touch to create text file  
+cat, or head -n 10, or tail -n 10, to show contents of file  
+> to pipe into a file. > recreates, >> adds. curl url > text.txt  
+mv file.txt /targetfolder  
+&& to chain commands (second will not be executed if first fails)  
+sh to execute from file  
+to save the script input:  
+script -r script-answers/exercise12_11.txt  
+exit  
+script -p script-answers/exercise12_8.txt  
+  
+Dockerfile specifies the image.  
+images includes the code, the dependencies and the instructions how to run the application. Images are immutable.  
+Docker build turns an image into a runtime instance of the image aka a container.  
+use :alpine image to reduce image size  
+.dockerignore specifies files not to be copied into the image.  
+-p : hostport:applicationport so 3010:3000 means 3000 from inside, localhost:3010 from outside  
+-v: use volumes to bind a local file to container (-> develop with IDE like VSCode in container, check docker-compose.dev.yml)  
+docker-compose.yml to automatize the image build, then run with docker compose up  
+docker-compose creates a DNS, container can be accessed from inside (=from other containers) with their image name, like frontend:3000. If port published with -p, from outside (=from the host) with localhost:3010  
 
-A proxy server, sometimes referred to as a forward proxy, is a server that routes traffic between client(s) and another system, usually external to the network. By doing so, it can regulate traffic according to preset policies, convert and mask client IP addresses, enforce security protocols, and block unknown traffic. Systems with shared networks, such as business organizations or data centers, often use proxy servers. Proxy servers expose a single interface with which clients interact without having to enforce all of the policies and route management logic within the clients themselves.  
+### docker commands
+--build image named backend-dev from the dockerfile called dev.Dockerfile which is in this folder:
+docker build -f dev.Dockerfile -t backend-dev .   
+  
+docker build -t frontend .   
+docker build --target build-stage -t frontend . # to stop at the build stage  
+docker container run --name frontend --rm -p 5173:80 frontend  
+docker container run -it --name frontend --rm -p 5173:80 frontend bash   
+docker container run --name frontend-dev -it --rm -p 5173:5173 -v "$(pwd):/usr/src/app/" frontend-dev bash  
+  
+docker compose -f docker-compose.dev.yml up  
+docker compose -f docker-compose.dev.yml down --volumes  
+--and to rebuild the image:  
+docker compose up --build  
+  
+--debug network:   
+docker exec -it frontend bash   then wget http://mongo:27017 -O - or curl http://mongo:27017  
+  
+docker builder prune -f  
+docker system prune -f  
+docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq)   
+docker network prune -f  
+  
+redis for simple key value database  
+nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app)  
+A proxy server, sometimes referred to as a forward proxy, is a server that routes traffic between client(s) and another system, usually external to the network. By doing so, it can regulate traffic according to preset policies, convert and mask client IP addresses, enforce security protocols, and block unknown traffic. Systems with shared networks, such as business organizations or data centers, often use proxy servers. Proxy servers expose a single interface with which clients interact without having to enforce all of the policies and route management logic within the clients themselves.    
 Unlike a traditional proxy server, which is used to protect clients, a reverse proxy is used to protect servers. A reverse proxy is a server that accepts a request from a client, forwards the request to another one of many other servers, and returns the results from the server that actually processed the request to the client as if the proxy server had processed the request itself. The client only communicates directly with the reverse proxy server and it does not know that some other server actually processed its request.  
-A traditional forward proxy server allows multiple clients to route traffic to an external network. For instance, a business may have a proxy that routes and filters employee traffic to the public Internet. A reverse proxy, on the other hand, routes traffic on behalf of multiple servers.
+A traditional forward proxy server allows multiple clients to route traffic to an external network. For instance, a business may have a proxy that routes and filters employee traffic to the public Internet. A reverse proxy, on the other hand, routes traffic on behalf of multiple servers.  
+
+
+
+
+## toRead  
+
+minify code: https://fullstackopen.com/en/part7/webpack#minifying-the-code, useful Libraries 7.e  
+
+backend as a service: directus https://directus.io/docs/tutorials/projects/use-directus-as-a-baby-health-tracker-with-owlet-and-ops-genie  
+
+https://cybersecuritybase.mooc.fi/descriptions  
+
+css https://flowbite.com/docs/components/navbar/  
+
+https://hackernoon.com/flaky-tests-a-war-that-never-ends-9aa32fdef359  
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+
+https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch3.md
+
+https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based-authentication#how-token-based-works
+
+https://medium.com/techtrument/multithreading-javascript-46156179cf9a
+
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
