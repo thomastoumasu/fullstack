@@ -287,7 +287,7 @@ docker-compose.yml to automatize the image build, then run with docker compose u
 docker-compose creates a DNS, container can be accessed from inside (=from other containers) with their image name, like frontend:3000. If port published with -p, from outside (=from the host) with localhost:3010  
 
 ### docker commands
---build image named backend-dev from the dockerfile called dev.Dockerfile which is in this folder:
+--build image named backend-dev from the dockerfile called dev.Dockerfile which is in this folder:  
 docker build -f dev.Dockerfile -t backend-dev .   
   
 docker build -t frontend .   
@@ -306,7 +306,9 @@ docker exec -it frontend bash   then wget http://mongo:27017 -O - or curl http:/
   
 docker builder prune -f  
 docker system prune -f  
-docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq)   
+```bat
+docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq)
+```  
 docker network prune -f  
   
 redis for simple key value database  
@@ -339,6 +341,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
