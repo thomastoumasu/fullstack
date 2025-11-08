@@ -303,13 +303,13 @@ docker compose up --build
   
 --debug network:   
 docker exec -it frontend bash   then wget http://mongo:27017 -O - or curl http://mongo:27017  
-  
-docker builder prune -f  
-docker system prune -f  
 ```bat
+docker builder prune -f  
+docker system prune -f 
 docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq)
-```  
+docker buildx history rm $(docker buildx history ls)
 docker network prune -f  
+```  
   
 redis for simple key value database  
 nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app)  
@@ -341,6 +341,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
