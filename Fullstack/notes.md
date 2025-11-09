@@ -270,7 +270,8 @@ touch to create text file
 cat, or head -n 10, or tail -n 10, to show contents of file  
 > to pipe into a file. > recreates, >> adds. curl url > text.txt  
 mv file.txt /targetfolder  
-&& to chain commands (second will not be executed if first fails)  
+&& to chain commands (second will not be executed if first fails)
+a=3 $a  b=$(curl bla)
 sh to execute from file  
 to save the script input:  
 script -r script-answers/exercise12_11.txt  
@@ -373,6 +374,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
