@@ -262,6 +262,7 @@ github actions with yml file: remember how to share variables between jobs (with
 ## 12 Container  
 ### bash
 https://tkt-lapio.github.io/command-line/  
+control-u to remove
 shell or cd: home folder. pwd: see path from root folder. root is /. A path that starts with / is absolute, otherwise it is relative.  
 ls -la  
 mkdir  
@@ -292,9 +293,23 @@ docker build -f dev.Dockerfile -t backend-dev .
   
 docker build -t frontend .   
 docker build --target build-stage -t frontend . # to stop at the build stage  
-docker container run --name frontend --rm -p 5173:80 frontend  
-docker container run -it --name frontend --rm -p 5173:80 frontend bash   
-docker container run --name frontend-dev -it --rm -p 5173:5173 -v "$(pwd):/usr/src/app/" frontend-dev bash  
+docker run --name frontend --rm -p 5173:80 frontend  
+docker run -it --name frontend --rm -p 5173:80 frontend bash   
+docker run --name frontend-dev -it --rm -p 5173:5173 -v "$(pwd):/usr/src/app/" frontend-dev bash  
+
+docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
+docker logs -f looper
+docker attach looper --no-stdin (to exit here, in the attached window, with Ctrl-C, without killing it)
+docker attach looper (to exit here, in the attached window, with Ctrl-P Ctrl-Q, without killing it)
+
+--copy file into running container (or other way), works also if container has stopped
+docker run -it --name test ubuntu sh
+touch bla.txt
+docker cp bla.txt test:usr/src/  
+
+ENTRYPOINT ["/usr/local/bin/yt-dlp"]  
+CMD ["https://www.youtube.com/watch?v=Aa55RKWZxxI"]  // becomes default argument for yt-dlp　　
+CMD only implies ENTRYPOINT ["bin/sh -c"]
   
 docker compose -f docker-compose.dev.yml up  
 docker compose -f docker-compose.dev.yml down --volumes  
@@ -311,6 +326,21 @@ docker buildx history rm $(docker buildx history ls)
 docker network prune -f  
 ```  
   
+do not forget to run container with -it if want to interact with it (like using sh read) 
+when using -v with a single file be sure it exists in the host, otherwise it will try to create a folder  
+-p 3456:3000 means 0.0.0.0:3456:3000 aka opening to anyone, better is -p 127.0.0.1:3456:3000 aka opening only to this computer  
+cache dependencies:  
+	FROM ruby:3.1.0
+	WORKDIR /usr/src/app
+	RUN gem install bundler:2.3.3
+	-# This willl cache the dependency layers if we ever need to make changes to the source code. 
+	COPY Gemfile* ./
+	RUN bundle install
+	COPY . .
+	RUN rails db:migrate RAILS_ENV=production
+	RUN rake assets:precompile
+	CMD ["rails", "s", "-e", "production"]
+
 redis for simple key value database  
 nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app)  
 A proxy server, sometimes referred to as a forward proxy, is a server that routes traffic between client(s) and another system, usually external to the network. By doing so, it can regulate traffic according to preset policies, convert and mask client IP addresses, enforce security protocols, and block unknown traffic. Systems with shared networks, such as business organizations or data centers, often use proxy servers. Proxy servers expose a single interface with which clients interact without having to enforce all of the policies and route management logic within the clients themselves.    
@@ -341,6 +371,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
