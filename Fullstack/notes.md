@@ -330,16 +330,18 @@ do not forget to run container with -it if want to interact with it (like using 
 when using -v with a single file be sure it exists in the host, otherwise it will try to create a folder  
 -p 3456:3000 means 0.0.0.0:3456:3000 aka opening to anyone, better is -p 127.0.0.1:3456:3000 aka opening only to this computer  
 cache dependencies:  
-	FROM ruby:3.1.0
-	WORKDIR /usr/src/app
-	RUN gem install bundler:2.3.3
-	-# This willl cache the dependency layers if we ever need to make changes to the source code. 
-	COPY Gemfile* ./
-	RUN bundle install
-	COPY . .
-	RUN rails db:migrate RAILS_ENV=production
-	RUN rake assets:precompile
-	CMD ["rails", "s", "-e", "production"]
+```bat
+FROM ruby:3.1.0
+WORKDIR /usr/src/app
+RUN gem install bundler:2.3.3
+# This will cache the dependency layers if we ever need to make changes to the source code. 
+COPY Gemfile* ./
+RUN bundle install
+COPY . .
+RUN rails db:migrate RAILS_ENV=production
+RUN rake assets:precompile
+CMD ["rails", "s", "-e", "production"]
+```
 
 redis for simple key value database  
 nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app)  
@@ -371,6 +373,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
