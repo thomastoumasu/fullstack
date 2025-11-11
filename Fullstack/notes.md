@@ -284,9 +284,13 @@ Docker build turns an image into a runtime instance of the image aka a container
 use :alpine image to reduce image size  
 .dockerignore specifies files not to be copied into the image.  
 -p : hostport:applicationport so 3010:3000 means 3000 from inside, localhost:3010 from outside  
+when leaving the host port unspecified, Docker will automatically choose a free port.  
+-p 3456:3000 means 0.0.0.0:3456:3000 aka opening to anyone, better is -p 127.0.0.1:3456:3000 aka opening only to this computer  
 -v: use volumes to bind a local file to container (-> develop with IDE like VSCode in container, check docker-compose.dev.yml)  
 docker-compose.yml to automatize the image build, then run with docker compose up  
 docker-compose creates a DNS, container can be accessed from inside (=from other containers) with their image name, like frontend:3000. If port published with -p, from outside (=from the host) with localhost:3010  
+scaling:  docker compose up --scale whoami=3  (be sure to leave host port unspecified otherwise conflict)  
+with load balancer
 
 ### docker commands
 --build image named backend-dev from the dockerfile called dev.Dockerfile which is in this folder:  
@@ -298,10 +302,10 @@ docker run --name frontend --rm -p 5173:80 frontend
 docker run -it --name frontend --rm -p 5173:80 frontend bash   
 docker run --name frontend-dev -it --rm -p 5173:5173 -v "$(pwd):/usr/src/app/" frontend-dev bash  
 
-docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
-docker logs -f looper
-docker attach looper --no-stdin (to exit here, in the attached window, with Ctrl-C, without killing it)
-docker attach looper (to exit here, in the attached window, with Ctrl-P Ctrl-Q, without killing it)
+docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'  
+docker logs -f looper  
+docker attach looper --no-stdin (to exit here, in the attached window, with Ctrl-C, without killing it)  
+docker attach looper (to exit here, in the attached window, with Ctrl-P Ctrl-Q, without killing it)  
 
 --copy file into running container (or other way), works also if container has stopped
 docker run -it --name test ubuntu sh
@@ -329,7 +333,6 @@ docker network prune -f
   
 do not forget to run container with -it if want to interact with it (like using sh read) 
 when using -v with a single file be sure it exists in the host, otherwise it will try to create a folder  
--p 3456:3000 means 0.0.0.0:3456:3000 aka opening to anyone, better is -p 127.0.0.1:3456:3000 aka opening only to this computer  
 cache dependencies:  
 ```bat
 FROM ruby:3.1.0
@@ -374,6 +377,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
