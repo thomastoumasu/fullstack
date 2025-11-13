@@ -260,6 +260,9 @@ Jenkins: self hosted, separate server for running the tasks in continuous integr
 github actions with yml file: remember how to share variables between jobs (with outputs), do not forget to check out the code (uses: actions/checkout@v4) and use the tools (for example, - uses: actions/setup-node@v4). Example pipeline in Patientor_fullstack.
 
 ## 12 Container  
+remember bind mount
+remember structure reverse proxy with nginx (local folder part12-containers-applications from https://fullstackopen.com/en/part12/basics_of_orchestration#communications-between-containers-in-a-more-ambitious-environment and same in local folder container-application-main from https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action)
+
 ### bash
 https://tkt-lapio.github.io/command-line/  
 control-u to remove
@@ -290,7 +293,7 @@ when leaving the host port unspecified, Docker will automatically choose a free 
 docker-compose.yml to automatize the image build, then run with docker compose up  
 docker-compose creates a DNS, container can be accessed from inside (=from other containers) with their image name, like frontend:3000. If port published with -p, from outside (=from the host) with localhost:3010  
 scaling:  docker compose up --scale whoami=3  (be sure to leave host port unspecified otherwise conflict)  
-with load balancer
+with load balancer: https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/docker-networking see local container-applications-main/scaling-exercise  
 
 ### docker commands
 --build image named backend-dev from the dockerfile called dev.Dockerfile which is in this folder:  
@@ -346,12 +349,24 @@ RUN rails db:migrate RAILS_ENV=production
 RUN rake assets:precompile
 CMD ["rails", "s", "-e", "production"]
 ```
+```bat
+FROM node:20
+WORKDIR /usr/src/app
+# Cache the dependency layers 
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["node", "index.js"]
+```
 
 redis for simple key value database  
-nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app)  
+nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app) (see also the same in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action, see local container-applications-main)    
 A proxy server, sometimes referred to as a forward proxy, is a server that routes traffic between client(s) and another system, usually external to the network. By doing so, it can regulate traffic according to preset policies, convert and mask client IP addresses, enforce security protocols, and block unknown traffic. Systems with shared networks, such as business organizations or data centers, often use proxy servers. Proxy servers expose a single interface with which clients interact without having to enforce all of the policies and route management logic within the clients themselves.    
 Unlike a traditional proxy server, which is used to protect clients, a reverse proxy is used to protect servers. A reverse proxy is a server that accepts a request from a client, forwards the request to another one of many other servers, and returns the results from the server that actually processed the request to the client as if the proxy server had processed the request itself. The client only communicates directly with the reverse proxy server and it does not know that some other server actually processed its request.  
 A traditional forward proxy server allows multiple clients to route traffic to an external network. For instance, a business may have a proxy that routes and filters employee traffic to the public Internet. A reverse proxy, on the other hand, routes traffic on behalf of multiple servers.  
+scan if ports are open in localhost: docker run -it --rm --network host networkstatic/nmap localhost  
+postgres configuration in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action  see local container-applications-main    
 
 
 
@@ -377,6 +392,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
