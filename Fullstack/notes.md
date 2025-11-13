@@ -366,12 +366,15 @@ A proxy server, sometimes referred to as a forward proxy, is a server that route
 Unlike a traditional proxy server, which is used to protect clients, a reverse proxy is used to protect servers. A reverse proxy is a server that accepts a request from a client, forwards the request to another one of many other servers, and returns the results from the server that actually processed the request to the client as if the proxy server had processed the request itself. The client only communicates directly with the reverse proxy server and it does not know that some other server actually processed its request.  
 A traditional forward proxy server allows multiple clients to route traffic to an external network. For instance, a business may have a proxy that routes and filters employee traffic to the public Internet. A reverse proxy, on the other hand, routes traffic on behalf of multiple servers.  
 scan if ports are open in localhost: docker run -it --rm --network host networkstatic/nmap localhost  
-postgres configuration in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action  see local container-applications-main    
+postgres configuration in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action  see local container-applications-main  
+build for M1: export DOCKER_DEFAULT_PLATFORM=linux/amd64  
 
 
 
 
 ## toRead  
+
+own server in cloud: https://www.hetzner.com/cloud  
 
 minify code: https://fullstackopen.com/en/part7/webpack#minifying-the-code, useful Libraries 7.e  
 
@@ -392,6 +395,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
