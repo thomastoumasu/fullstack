@@ -328,6 +328,7 @@ docker-compose.yml to automatize the image build, then run with docker compose u
 docker-compose creates a DNS, container can be accessed from inside (=from other containers) with their image name, like frontend:3000. If port published with -p, from outside (=from the host) with localhost:3010  
 scaling:  docker compose up --scale whoami=3  (be sure to leave host port unspecified otherwise conflict)  
 with load balancer: https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/docker-networking see local container-applications-main/scaling-exercise  
+set user with low permissions  COPY --chown=node:node . . and then before CMD: USER node  
 
 ### docker commands
 --build image named backend-dev from the dockerfile called dev.Dockerfile which is in this folder:  
@@ -401,7 +402,7 @@ Unlike a traditional proxy server, which is used to protect clients, a reverse p
 A traditional forward proxy server allows multiple clients to route traffic to an external network. For instance, a business may have a proxy that routes and filters employee traffic to the public Internet. A reverse proxy, on the other hand, routes traffic on behalf of multiple servers.  
 scan if ports are open in localhost: docker run -it --rm --network host networkstatic/nmap localhost  
 postgres configuration in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action  see local container-applications-main  
-build for M1: export DOCKER_DEFAULT_PLATFORM=linux/amd64  or FROM --platform=linux/arm64 docker:25-git  or with: platforms: linux/amd64,linux/arm64  
+build for M1: export DOCKER_DEFAULT_PLATFORM=linux/amd64  or docker build --platform linux/amd64 -t imagename . or FROM --platform=linux/arm64 docker:25-git  or with: platforms: linux/amd64,linux/arm64   
 docker hub:  if not specified, the tag :latest simply refers to the most recent image that has been built and pushed  
 
 
@@ -430,6 +431,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
