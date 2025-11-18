@@ -271,15 +271,49 @@ ls -la
 mkdir  
 touch to create text file  
 cat, or head -n 10, or tail -n 10, to show contents of file  
-> to pipe into a file. > recreates, >> adds. curl url > text.txt  
+to pipe into a file: > recreates, >> adds. curl url > text.txt  
 mv file.txt /targetfolder  
 && to chain commands (second will not be executed if first fails)
-a=3 $a  b=$(curl bla)
+a=3 $a  b=$(curl bla)  
+quote if variable can be empty or contain spaces  
 sh to execute from file  
 to save the script input:  
 script -r script-answers/exercise12_11.txt  
 exit  
 script -p script-answers/exercise12_8.txt  
+#!/bin/sh or bash; chmod +x script.sh ; mv script.sh script; export PATH=$PATH:$(pwd) or put the script in /usr/local/bin  
+
+```bat
+set -e # exit immediately if a command exits with a non-zero status
+
+usage() {
+  echo "Usage: $0 <github-repo> <docker-image>"
+  exit 1
+}
+
+cleanup() {
+  rm -rf "$TEMP_DIR"
+}
+
+if [ "$#" -ne 2 ]; then
+  usage
+fi
+
+GITHUB_REPO=$1
+DOCKER_IMAGE=$2
+TEMP_DIR=$(mktemp -d)
+
+# registers the cleanup function to be called on script exit
+trap cleanup exit
+
+git clone "https://github.com/$GITHUB_REPO" "$TEMP_DIR"
+cd $TEMP_DIR/express-app
+
+docker build -t "$DOCKER_IMAGE" .
+docker push "$DOCKER_IMAGE"
+
+#sh c33solution.sh thomastoumasu/container-applications-main/ thomastoumasu/container-ex-express-app
+```
   
 Dockerfile specifies the image.  
 images includes the code, the dependencies and the instructions how to run the application. Images are immutable.  
@@ -367,7 +401,8 @@ Unlike a traditional proxy server, which is used to protect clients, a reverse p
 A traditional forward proxy server allows multiple clients to route traffic to an external network. For instance, a business may have a proxy that routes and filters employee traffic to the public Internet. A reverse proxy, on the other hand, routes traffic on behalf of multiple servers.  
 scan if ports are open in localhost: docker run -it --rm --network host networkstatic/nmap localhost  
 postgres configuration in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action  see local container-applications-main  
-build for M1: export DOCKER_DEFAULT_PLATFORM=linux/amd64  
+build for M1: export DOCKER_DEFAULT_PLATFORM=linux/amd64  or FROM --platform=linux/arm64 docker:25-git  or with: platforms: linux/amd64,linux/arm64  
+docker hub:  if not specified, the tag :latest simply refers to the most recent image that has been built and pushed  
 
 
 
@@ -395,6 +430,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
