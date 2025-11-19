@@ -1,3 +1,7 @@
+https://github.com/thomastoumasu/fullstack/blob/main/Fullstack/notes.md#12-container-docker
+
+[Container](#docker)
+
 ## IDE, basics
 https://docs.github.com/de/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#section-links  
 https://www.markdownguide.org/extended-syntax/#highlight  
@@ -262,7 +266,7 @@ Jenkins: self hosted, separate server for running the tasks in continuous integr
 github actions with yml file: remember how to share variables between jobs (with outputs), do not forget to check out the code (uses: actions/checkout@v4) and use the tools (for example, - uses: actions/setup-node@v4).  
 Example pipeline in Patientor_fullstack, also https://github.com/thomastoumasu/container-applications-main/tree/main/.github/workflows  
 
-## bash {#sh}
+## bash 
 https://tkt-lapio.github.io/command-line/ 
 help: man sh  
 control-u to remove
@@ -314,7 +318,8 @@ docker push "$DOCKER_IMAGE"
 
 #sh c33solution.sh thomastoumasu/container-applications-main/ thomastoumasu/container-ex-express-app
 ```
-## 12 Container {#docker}
+<a name="docker"></a>
+## 12 Container 
 remember bind mount  
 remember structure reverse proxy with nginx (local folder part12-containers-applications from https://fullstackopen.com/en/part12/basics_of_orchestration#communications-between-containers-in-a-more-ambitious-environment and same in local folder container-application-main from https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action)  
 do not forget to run container with -it if want to interact with it (like using sh read)   
@@ -434,6 +439,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
