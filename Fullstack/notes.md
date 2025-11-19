@@ -238,11 +238,11 @@ Redux is a client-state librariy that can be used to store asynchronous data
 context: see context_counter
 
 ## 9 Typescript  
-https://react-typescript-cheatsheet.netlify.app/docs/basic/setup
-useful: zod or custom validator to the request body in ts-flight-diary utils.ts
-type function interface, not necessarily within function
-do not forget to import express, { Request, Response, NextFunction } from "express";
-
+https://react-typescript-cheatsheet.netlify.app/docs/basic/setup  
+useful: zod or custom validator to the request body in ts-flight-diary utils.ts  
+type function interface, not necessarily within function  
+do not forget to import express, { Request, Response, NextFunction } from "express";  
+```
 try {
     const newDiaryEntry = toNewDiaryEntry(req.body);
     const addedEntry = diaryService.addDiary(newDiaryEntry);
@@ -254,19 +254,18 @@ try {
     }
     res.status(400).send(errorMessage);
   }
-
+```
 ## 11 CI
 Jenkins: self hosted, separate server for running the tasks in continuous integration  
-github actions with yml file: remember how to share variables between jobs (with outputs), do not forget to check out the code (uses: actions/checkout@v4) and use the tools (for example, - uses: actions/setup-node@v4). Example pipeline in Patientor_fullstack.
+github actions with yml file: remember how to share variables between jobs (with outputs), do not forget to check out the code (uses: actions/checkout@v4) and use the tools (for example, - uses: actions/setup-node@v4).  
+Example pipeline in Patientor_fullstack, also https://github.com/thomastoumasu/container-applications-main/tree/main/.github/workflows  
 
 ## 12 Container  
-remember bind mount
-remember structure reverse proxy with nginx (local folder part12-containers-applications from https://fullstackopen.com/en/part12/basics_of_orchestration#communications-between-containers-in-a-more-ambitious-environment and same in local folder container-application-main from https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action)
-
 ### bash
-https://tkt-lapio.github.io/command-line/  
+https://tkt-lapio.github.io/command-line/ 
+help: man sh  
 control-u to remove
-shell or cd: home folder. pwd: see path from root folder. root is /. A path that starts with / is absolute, otherwise it is relative.  
+~ is home folder. cd to go to home folder. pwd: see path from root folder. root is /. A path that starts with / is absolute, otherwise it is relative.  
 ls -la  
 mkdir  
 touch to create text file  
@@ -277,11 +276,11 @@ mv file.txt /targetfolder
 a=3 $a  b=$(curl bla)  
 quote if variable can be empty or contain spaces  
 sh to execute from file  
+#!/bin/sh or bash; chmod +x script.sh ; mv script.sh script; export PATH=$PATH:$(pwd) or put the script in /usr/local/bin  
 to save the script input:  
 script -r script-answers/exercise12_11.txt  
 exit  
 script -p script-answers/exercise12_8.txt  
-#!/bin/sh or bash; chmod +x script.sh ; mv script.sh script; export PATH=$PATH:$(pwd) or put the script in /usr/local/bin  
 
 ```bat
 set -e # exit immediately if a command exits with a non-zero status
@@ -314,11 +313,16 @@ docker push "$DOCKER_IMAGE"
 
 #sh c33solution.sh thomastoumasu/container-applications-main/ thomastoumasu/container-ex-express-app
 ```
-  
+
+remember bind mount  
+remember structure reverse proxy with nginx (local folder part12-containers-applications from https://fullstackopen.com/en/part12/basics_of_orchestration#communications-between-containers-in-a-more-ambitious-environment and same in local folder container-application-main from https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action)  
+do not forget to run container with -it if want to interact with it (like using sh read)   
+when using -v with a single file be sure it exists in the host, otherwise it will try to create a folder   
+
 Dockerfile specifies the image.  
 images includes the code, the dependencies and the instructions how to run the application. Images are immutable.  
 Docker build turns an image into a runtime instance of the image aka a container.  
-use :alpine image to reduce image size  
+use :alpine image to reduce image size, or multistage build  
 .dockerignore specifies files not to be copied into the image.  
 -p : hostport:applicationport so 3010:3000 means 3000 from inside, localhost:3010 from outside  
 when leaving the host port unspecified, Docker will automatically choose a free port.  
@@ -336,16 +340,16 @@ docker build -f dev.Dockerfile -t backend-dev .
   
 docker build -t frontend .   
 docker build --target build-stage -t frontend . # to stop at the build stage  
-docker run --name frontend --rm -p 5173:80 frontend  
-docker run -it --name frontend --rm -p 5173:80 frontend bash   
-docker run --name frontend-dev -it --rm -p 5173:5173 -v "$(pwd):/usr/src/app/" frontend-dev bash  
+docker run --rm --name frontend -p 5173:80 frontend  
+docker run --rm -it --name frontend -p 5173:80 frontend bash   
+docker run --rm -it --name frontend-dev -p 5173:5173 -v "$(pwd):/usr/src/app/" frontend-dev bash  
 
-docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'  
+docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done' # do not forget -it if command reads input from user with read  
 docker logs -f looper  
 docker attach looper --no-stdin (to exit here, in the attached window, with Ctrl-C, without killing it)  
 docker attach looper (to exit here, in the attached window, with Ctrl-P Ctrl-Q, without killing it)  
 
---copy file into running container (or other way), works also if container has stopped
+--copy file into running container (or from container to host), works also if container has stopped
 docker run -it --name test ubuntu sh
 touch bla.txt
 docker cp bla.txt test:usr/src/  
@@ -355,7 +359,7 @@ CMD ["https://www.youtube.com/watch?v=Aa55RKWZxxI"]  // becomes default argument
 CMD only implies ENTRYPOINT ["bin/sh -c"]
   
 docker compose -f docker-compose.dev.yml up  
-docker compose -f docker-compose.dev.yml down --volumes  
+docker compose -f docker-compose.dev.yml down --volumes  # remove volumes
 --and to rebuild the image:  
 docker compose up --build  
   
@@ -367,10 +371,8 @@ docker system prune -f
 docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq)
 docker buildx history rm $(docker buildx history ls)
 docker network prune -f  
-```  
-  
-do not forget to run container with -it if want to interact with it (like using sh read) 
-when using -v with a single file be sure it exists in the host, otherwise it will try to create a folder  
+```
+   
 cache dependencies:  
 ```bat
 FROM ruby:3.1.0
@@ -431,6 +433,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
