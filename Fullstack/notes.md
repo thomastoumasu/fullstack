@@ -1,11 +1,5 @@
-#### Table of Contents
-
-- [Typescript](#ts)
-- [Shell](#sh)
-- [Container](#docker)
-
-
 ## IDE, basics
+https://docs.github.com/de/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#section-links  
 https://www.markdownguide.org/extended-syntax/#highlight  
 /Users/thomas/PycharmProjects/Fullstack  
 https://medium.com/@robinviktorsson/setting-up-eslint-and-prettier-for-a-typescript-project-aa2434417b8f  
@@ -440,6 +434,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
