@@ -41,7 +41,7 @@ check server.js in -react-query_anecdotes for json-server
 ## 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
 A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.  
-The example uses Express library with Node.js. This course will use Node.js and Express to create web servers.  
+This course will use Node.js and Express to create web servers. Node.js is a cross-platform JavaScript runtime that makes it possible to run JavaScript in your machine, servers and embedded devices, among many other platforms.  
 
 curl https://studies.cs.helsinki.fi/exampleapp/new_note  -d "note=AV USigma"  --ssl-no-revoke  
 curl -X POST -H "Content-Type: application/json" -d '{"id":"4","content":"burp","important":false}' http://localhost:3001/api/notes  
@@ -431,6 +431,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
