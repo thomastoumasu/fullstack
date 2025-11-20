@@ -243,7 +243,7 @@ Redux is a client-state librariy that can be used to store asynchronous data
 
 context: see context_counter
 
-## 9 Typescript {#ts}
+## 9 Typescript
 https://react-typescript-cheatsheet.netlify.app/docs/basic/setup  
 useful: zod or custom validator to the request body in ts-flight-diary utils.ts  
 type function interface, not necessarily within function  
@@ -275,6 +275,8 @@ ls -la
 mkdir  
 touch to create text file  
 cat, or head -n 10, or tail -n 10, to show contents of file  
+du -hcs /dev  for size of folder  
+rm -rf cache common controller go.mod go.sum pgconnection router  to remove multiple files and folders  
 to pipe into a file: > recreates, >> adds. curl url > text.txt  
 mv file.txt /targetfolder  
 && to chain commands (second will not be executed if first fails)
@@ -339,6 +341,23 @@ docker-compose creates a DNS, container can be accessed from inside (=from other
 scaling:  docker compose up --scale whoami=3  (be sure to leave host port unspecified otherwise conflict)  
 with load balancer: https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/docker-networking see local container-applications-main/scaling-exercise  
 set user with low permissions  COPY --chown=node:node . . and then before CMD: USER node  
+https://medium.com/@lizrice/non-privileged-containers-based-on-the-scratch-image-a80105d6d341  
+```
+FROM golang:1.16-alpine AS build-stage
+RUN addgroup --system backendgroup && adduser --system backenduser --ingroup backendgroup
+WORKDIR /usr/src/app
+COPY  . .
+ENV CGO_ENABLED=0
+RUN go build -ldflags="-s -w" && go test ./...
+
+FROM scratch
+COPY --from=build-stage /etc/passwd /etc/passwd
+WORKDIR /usr/src/app
+COPY --from=build-stage /usr/src/app/server .
+ENV PORT=80
+USER backenduser
+CMD ["./server"]
+```
 
 ### docker commands
 --build image named backend-dev from the dockerfile called dev.Dockerfile which is in this folder:  
@@ -402,7 +421,9 @@ COPY . .
 EXPOSE 3000
 CMD ["node", "index.js"]
 ```
-
+to install SW inside container:
+* apt update && apt install -y curl
+* apk add --no-cache curl ffmpeg python3 ca-certificates (for alpine images)  
 redis for simple key value database  
 nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app) (see also the same in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action, see local container-applications-main)    
 A proxy server, sometimes referred to as a forward proxy, is a server that routes traffic between client(s) and another system, usually external to the network. By doing so, it can regulate traffic according to preset policies, convert and mask client IP addresses, enforce security protocols, and block unknown traffic. Systems with shared networks, such as business organizations or data centers, often use proxy servers. Proxy servers expose a single interface with which clients interact without having to enforce all of the policies and route management logic within the clients themselves.    
@@ -439,6 +460,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
