@@ -272,7 +272,15 @@ github actions with yml file: remember how to share variables between jobs (with
 Example pipeline in Patientor_fullstack, also https://github.com/thomastoumasu/container-applications-main/tree/main/.github/workflows  
 
 ## bash 
-https://tkt-lapio.github.io/command-line/ 
+https://tkt-lapio.github.io/command-line/  
+https://www.shellscript.sh  
+the shell parses the arguments BEFORE passing them on to the program being called.  
+so quote if variable can be empty or contain a whitespace (because then that would be two arguments)  
+read USER_NAME  
+touch "${USER_NAME}_file"    
+a=3 $a  b=$(curl bla)  
+MYVAR=hello  
+. ./myvar2.sh #to use it there and also to use var defined there  
 help: man sh  
 control-u to remove  
 ~ is home folder. cd to go to home folder. pwd: see path from root folder. root is /. A path that starts with / is absolute, otherwise it is relative.  
@@ -284,15 +292,13 @@ du -hcs /dev  for size of folder
 rm -rf cache common controller go.mod go.sum pgconnection router  to remove multiple files and folders  
 to pipe into a file: > recreates, >> adds. curl url > text.txt  
 mv file.txt /targetfolder  
-&& to chain commands (second will not be executed if first fails)
-a=3 $a  b=$(curl bla)  
-quote if variable can be empty or contain spaces  
+&& to chain commands (second will not be executed if first fails) 
 sh to execute from file  
 #!/bin/sh or bash; chmod +x script.sh ; mv script.sh script; export PATH=$PATH:$(pwd) or put the script in /usr/local/bin  
 to save the script input:  
-script -r script-answers/exercise12_11.txt  
+script -r bla.txt  
 exit  
-script -p script-answers/exercise12_8.txt  
+script -p bla.txt  
 
 ```bat
 set -e # exit immediately if a command exits with a non-zero status
@@ -497,6 +503,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
