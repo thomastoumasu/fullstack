@@ -278,7 +278,9 @@ the shell parses the arguments BEFORE passing them on to the program being calle
 so quote if variable can be empty or contain a whitespace (because then that would be two arguments)  
 read USER_NAME  
 touch "${USER_NAME}_file"    
-a=3 $a  b=$(curl bla)  
+```bat
+a=3 $a  b=$(curl bla)
+```
 MYVAR=hello  
 . ./myvar2.sh #to use it there and also to use var defined there  
 help: man sh  
@@ -503,6 +505,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
