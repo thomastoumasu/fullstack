@@ -44,6 +44,11 @@ JSON.parse(loggedUserJSON)
 
 check server.js in -react-query_anecdotes for json-server  
 
+install may update the package-lock.json  
+install may install a different version of a dependency if you have ^ or ~ in the version of the dependency.  
+ci will delete the node_modules folder before installing anything  
+ci will follow the package-lock.json and does not alter any files  
+
 ## 0.  
 In traditional web applications, the browser is "dumb". It only fetches HTML data from the server, and all application logic is on the server.  
 A server can be created using Java Spring, Python Flask or Ruby on Rails to name just a few examples.  
@@ -269,7 +274,7 @@ Example pipeline in Patientor_fullstack, also https://github.com/thomastoumasu/c
 ## bash 
 https://tkt-lapio.github.io/command-line/ 
 help: man sh  
-control-u to remove
+control-u to remove  
 ~ is home folder. cd to go to home folder. pwd: see path from root folder. root is /. A path that starts with / is absolute, otherwise it is relative.  
 ls -la  
 mkdir  
@@ -324,6 +329,7 @@ docker push "$DOCKER_IMAGE"
 ## 12 Container 
 remember bind mount  
 remember structure reverse proxy with nginx (local folder part12-containers-applications from https://fullstackopen.com/en/part12/basics_of_orchestration#communications-between-containers-in-a-more-ambitious-environment and same in local folder container-application-main from https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action)  
+<img src="./reverse_proxy.png" alt="nginx reverse proxy" style="height:600px; width:300px;"/>
 do not forget to run container with -it if want to interact with it (like using sh read)   
 when using -v with a single file be sure it exists in the host, otherwise it will try to create a folder   
 
@@ -387,6 +393,8 @@ docker compose -f docker-compose.dev.yml up
 docker compose -f docker-compose.dev.yml down --volumes  # remove volumes
 --and to rebuild the image:  
 docker compose up --build  
+
+depends_on: ensures that the nginx container is not started before the frontend container app is started (If we do not enforce the starting order with depends_on there is a risk that Nginx fails on startup since it tries to resolve all DNS names that are referred in the config file) (btw, only started, not ready for action)   
   
 --debug network:   
 docker exec -it frontend bash   then wget http://mongo:27017 -O - or curl http://mongo:27017  
@@ -397,7 +405,9 @@ docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq)
 docker buildx history rm $(docker buildx history ls)
 docker network prune -f  
 ```
-   
+
+node:20.9.0-bullseye-slim or node:20-alpine  https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/
+npm ci --omit=dev to not waste time installing development dependencies.  
 cache dependencies:  
 ```bat
 FROM ruby:3.1.0
@@ -422,8 +432,17 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 to install SW inside container:
+* apt-get update && apt-get -y install nano  
+	nano /usr/src/app/index.js  
+	console.log('Hello World')  
+	Ctrl-x y Enter  
+apt-get -y install curl  
+curl -sL https://deb.nodesource.com/setup_20.x | bash  
+apt install -y nodejs  
+node usr/src/app/index.js  
 * apt update && apt install -y curl
-* apk add --no-cache curl ffmpeg python3 ca-certificates (for alpine images)  
+* apk add --no-cache curl ffmpeg python3 ca-certificates (for alpine images)
+
 redis for simple key value database  
 nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app) (see also the same in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action, see local container-applications-main)    
 A proxy server, sometimes referred to as a forward proxy, is a server that routes traffic between client(s) and another system, usually external to the network. By doing so, it can regulate traffic according to preset policies, convert and mask client IP addresses, enforce security protocols, and block unknown traffic. Systems with shared networks, such as business organizations or data centers, often use proxy servers. Proxy servers expose a single interface with which clients interact without having to enforce all of the policies and route management logic within the clients themselves.    
@@ -434,8 +453,26 @@ postgres configuration in https://courses.mooc.fi/org/uh-cs/courses/devops-with-
 build for M1: export DOCKER_DEFAULT_PLATFORM=linux/amd64  or docker build --platform linux/amd64 -t imagename . or FROM --platform=linux/arm64 docker:25-git  or with: platforms: linux/amd64,linux/arm64   
 docker hub:  if not specified, the tag :latest simply refers to the most recent image that has been built and pushed  
 
-
-
+.dockerignore  
+build  
+dist  
+mongo_data  
+redis_data  
+  
+node_modules  
+.dockerignore  
+Dockerfile  
+dev.Dockerfile  
+docker-compose.dev.yml  
+docker-compose.yml  
+compose.dev.yaml  
+compose.yaml  
+.git  
+.gitignore  
+npm-debug.log  
+.npmrc  
+.DS_Store  
+  
 
 ## toRead  
 
@@ -460,6 +497,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
