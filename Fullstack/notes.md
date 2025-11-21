@@ -329,7 +329,7 @@ docker push "$DOCKER_IMAGE"
 ## 12 Container 
 remember bind mount  
 remember structure reverse proxy with nginx (local folder part12-containers-applications from https://fullstackopen.com/en/part12/basics_of_orchestration#communications-between-containers-in-a-more-ambitious-environment and same in local folder container-application-main from https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action)  
-<img src="./reverse_proxy.png" alt="nginx reverse proxy" style="height:600px; width:300px;"/>
+<img src="./reverse_proxy.png" alt="nginx reverse proxy" style="height:600px; width:500px;"/>  
 do not forget to run container with -it if want to interact with it (like using sh read)   
 when using -v with a single file be sure it exists in the host, otherwise it will try to create a folder   
 
@@ -497,6 +497,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
