@@ -1,4 +1,5 @@
-https://github.com/thomastoumasu/fullstack/blob/main/Fullstack/notes.md#12-container-docker
+Kubernetes: orchestration system like compose, robustness and automatization  
+using k3d to create a group of Docker containers that run k3s, and using the Kubernetes cli called kubectl  
 
 [Container](#docker)
 
@@ -505,6 +506,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
