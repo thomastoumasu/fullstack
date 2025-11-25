@@ -1,5 +1,16 @@
 Kubernetes: orchestration system like compose, robustness and automatization  
 using k3d to create a group of Docker containers that run k3s, and using the Kubernetes cli called kubectl  
+```bash
+k3d cluster create -a 2
+# deploy manually
+kubectl create deployment hashgenerator-dep --image=jakousa/dwk-app1
+kubectl scale deployment/hashgenerator-dep --replicas=4 # to scale
+kubectl set image deployment/hashgenerator-dep dwk-app1=jakousa/dwk-app2 # to change the image
+# or use a file, can be local or from the internet
+ kubectl apply -f manifests/deployment.yaml # can do also delete
+POD=$(kubectl get pods -o=name | grep the-project) && kubectl wait --for=condition=Ready $POD
+kubectl port-forward $POD 3006:3000
+```
 
 [Container](#docker)
 
@@ -506,6 +517,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
