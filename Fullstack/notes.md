@@ -1,16 +1,38 @@
 Kubernetes: orchestration system like compose, robustness and automatization  
 using k3d to create a group of Docker containers that run k3s, and using the Kubernetes cli called kubectl  
 ```bash
+# create cluster
 k3d cluster create -a 2
+k3d cluster create --port 8082:30080@agent:0 -p 8081:80@loadbalancer --agents 2 # to be able to use nodeport later
 # deploy manually
 kubectl create deployment hashgenerator-dep --image=jakousa/dwk-app1
 kubectl scale deployment/hashgenerator-dep --replicas=4 # to scale
 kubectl set image deployment/hashgenerator-dep dwk-app1=jakousa/dwk-app2 # to change the image
 # or use a file, can be local or from the internet
-kubectl apply -f manifests/deployment.yaml # can do also delete
+kubectl apply -f manifests/deployment.yaml # to delete: kubectl delete -f manifests/deployment.yaml
+# add a nodeport service to connect from outside the cluster
+kubectl apply -f manifests/nodeport_service.yaml
+# wait for pod to be ready
 POD=$(kubectl get pods -o=name | grep the-project) && kubectl wait --for=condition=Ready $POD
-kubectl port-forward $POD 3006:3000
+# or wait for deployment to be complete
+kubectl rollout status deployment the-project
+# hack: forward port to host to be able to debug in localhost (the command blocks so run it in the background)
+kubectl port-forward $POD 3006:5000 & sleep 1 && curl localhost:3006
 ```
+```bash
+# create cluster
+k3d cluster create -p 8081:80@loadbalancer --agents 2
+# create deployment and service for both apps and common ingress
+kubectl apply -f ./log_output/manifests/deployment.yaml
+kubectl apply -f ./log_output/manifests/service.yaml
+kubectl apply -f ./pingpong/manifests/deployment.yaml
+kubectl apply -f ./pingpong/manifests/service.yaml
+kubectl apply -f manifests/ingress.yaml
+# kubectl get svc,ing # should see the svc on 2345 and 1234 as well as the ingress on 80
+# check apps are accessible on host port
+curl localhost:8081 && curl localhost:8081/pingpong
+```
+
 
 [Container](#docker)
 
@@ -517,6 +539,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
