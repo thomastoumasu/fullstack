@@ -34,6 +34,7 @@ kubectl apply -f manifests/ingress.yaml
 # check apps are accessible on host port
 curl localhost:8081 && curl localhost:8081/pingpong
 ```
+```bash
 docker ps  
 k3d kubeconfig get k3s-default  
 kubectl cluster-info  
@@ -43,6 +44,17 @@ kubectl describe nodes/...
 kubectl logs -f $POD --prefix --all-containers  
 kubectl get pods $POD -o jsonpath='{.spec.containers[*].name}'  
 kubectl exec -it $POD -c frontend -- sh  
+# # debug: with service IP
+kubectl exec -it alpine-curl -- curl http://backend-svc:2345/api/todos 
+kubectl exec -it alpine-curl -- curl http://the-project-svc:1234
+# # with service IP
+SVCIP=$(kubectl get service/backend-svc -o jsonpath='{.spec.clusterIP}')
+kubectl exec -it alpine-curl -- curl ${SVCIP}:2345/api/todos
+# with pod IP
+POD=$(kubectl get pods -o=name | grep backend)
+kubectl describe $POD
+# curl this ID, with internal port (5000)
+```
 
 
 [Container](#docker)
@@ -550,6 +562,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
