@@ -55,7 +55,13 @@ POD=$(kubectl get pods -o=name | grep backend)
 kubectl describe $POD
 # curl this ID, with internal port (5000)
 ```
-
+```bash
+kubectl create namespace project
+kubectl get all --all-namespaces
+kubens project
+kubectl delete all --all -n project
+kubectl exec -it alpine-curl -n default -- curl http://backend-svc.project:2345/api/todos
+```
 
 [Container](#docker)
 
@@ -562,6 +568,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
