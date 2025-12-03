@@ -2,6 +2,7 @@ Kubernetes: orchestration system like compose, robustness and automatization
 using k3d to create a group of Docker containers that run k3s, and using the Kubernetes cli called kubectl  
 deployment: what container you want, how they should be running, and how many of them should be running (edit the deployment to change the number of replicas)  
 https://speakerdeck.com/thockin  
+encrypt a file: https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes/chapter-3/configuring-applications  
 ```bash
 # create cluster
 k3d cluster create -a 2
@@ -62,7 +63,7 @@ kubens project
 kubectl delete all --all -n project
 kubectl exec -it alpine-curl -n default -- curl http://backend-svc.project:2345/api/todos
 ```
-
+Apply environment variables, apply content from file: https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes/chapter-3/configuring-applications  
 [Container](#docker)
 
 ## IDE, basics
@@ -568,6 +569,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
