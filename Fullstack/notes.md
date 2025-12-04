@@ -515,7 +515,10 @@ node usr/src/app/index.js
 * apt update && apt install -y curl
 * apk add --no-cache curl ffmpeg python3 ca-certificates (for alpine images)
 
-redis for simple key value database  
+redis for simple key value database: check  
+https://github.com/thomastoumasu/k8s-material-example/tree/master/app5 with https://github.com/thomastoumasu/k8s-material-example/blob/master/bin/bash/sc6.sh  
+https://github.com/thomastoumasu/part12-containers-applications/tree/main/todo-app/todo-backend with https://fullstackopen.com/en/part12/building_and_configuring_environments#redis  
+
 nginx to serve static content, for reverse proxy (see docker-compose and docker-compose.dev in part12-containers-applications/todo-app) (see also the same in https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker/chapter-3/volumes-in-action, see local container-applications-main)    
 A proxy server, sometimes referred to as a forward proxy, is a server that routes traffic between client(s) and another system, usually external to the network. By doing so, it can regulate traffic according to preset policies, convert and mask client IP addresses, enforce security protocols, and block unknown traffic. Systems with shared networks, such as business organizations or data centers, often use proxy servers. Proxy servers expose a single interface with which clients interact without having to enforce all of the policies and route management logic within the clients themselves.    
 Unlike a traditional proxy server, which is used to protect clients, a reverse proxy is used to protect servers. A reverse proxy is a server that accepts a request from a client, forwards the request to another one of many other servers, and returns the results from the server that actually processed the request to the client as if the proxy server had processed the request itself. The client only communicates directly with the reverse proxy server and it does not know that some other server actually processed its request.  
@@ -569,6 +572,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
