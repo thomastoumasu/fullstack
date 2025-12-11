@@ -64,6 +64,8 @@ kubectl delete all --all -n project
 kubectl exec -it alpine-curl -n default -- curl http://backend-svc.project:2345/api/todos
 ```
 Apply environment variables, apply content from file: https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes/chapter-3/configuring-applications  
+if app depends on another service (like backend depending on database), instead of complicated error handling/startup order, let backend crash if db not yet available so k8s can restart the pod.  
+GKE: if using ingress, services need to map from 80; and all apps need to return something on /. See 3.1 and 3.2 in k8s_submission  
 [Container](#docker)
 
 ## IDE, basics
@@ -572,6 +574,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
