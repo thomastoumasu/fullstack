@@ -65,7 +65,7 @@ kubectl exec -it alpine-curl -n default -- curl http://backend-svc.project:2345/
 ```
 Apply environment variables, apply content from file: https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes/chapter-3/configuring-applications  
 if app depends on another service (like backend depending on database), instead of complicated error handling/startup order, let backend crash if db not yet available so k8s can restart the pod.  
-GKE:  
+GKE:  create cluster:  
 ```bash
 gcloud -v # if not known check $PATH
 gcloud auth login
@@ -82,7 +82,16 @@ kubectl cluster-info
 # kubectl create namespace project
 # debug creation/deletion
 gcloud container operations list
-```  
+```
+use amd images for gke: 
+```bash
+docker build --platform linux/amd64 -t 3.4 .
+docker tag 3.4 thomastoumasu/k8s-pingpong:3.4-amd && docker push thomastoumasu/k8s-pingpong:3.4-amd
+```
+make cluster accessible from outside:  
+- directly with LoadBalancer, see app7 on MaterialExample
+- with ingress (use NodePort in services)
+- with gateway (use ClusterIP in services)
 all apps need to return something on /. See 3.1 and 3.2 in k8s_submission  
 [Container](#docker)
 
@@ -592,6 +601,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
