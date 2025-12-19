@@ -65,7 +65,25 @@ kubectl exec -it alpine-curl -n default -- curl http://backend-svc.project:2345/
 ```
 Apply environment variables, apply content from file: https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes/chapter-3/configuring-applications  
 if app depends on another service (like backend depending on database), instead of complicated error handling/startup order, let backend crash if db not yet available so k8s can restart the pod.  
-GKE: if using ingress, services need to map from 80; and all apps need to return something on /. See 3.1 and 3.2 in k8s_submission  
+GKE:  
+```bash
+gcloud -v # if not known check $PATH
+gcloud auth login
+gcloud config set project dwk-gke-480809
+gcloud services enable container.googleapis.com
+# -micro -small -medium
+gcloud container clusters create dwk-cluster --zone=europe-north1-b --cluster-version=1.32 --disk-size=32 --num-nodes=3 --machine-type=e2-medium
+gcloud container clusters get-credentials dwk-cluster --zone=europe-north1-b
+kubectl cluster-info
+# to set kube-config to point at the new cluster: gcloud container clusters get-credentials dwk-cluster --zone=europe-north1-b
+# # if using Gateway
+# gcloud container clusters update dwk-cluster --location=europe-north1-b --gateway-api=standard
+# # if using namespaces
+# kubectl create namespace project
+# debug creation/deletion
+gcloud container operations list
+```  
+all apps need to return something on /. See 3.1 and 3.2 in k8s_submission  
 [Container](#docker)
 
 ## IDE, basics
@@ -574,6 +592,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
