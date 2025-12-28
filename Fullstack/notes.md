@@ -124,6 +124,9 @@ await
 if (variable) {
 will be false if variable is undefined, like with someArray.find( and not found - so can use it
 
+<button onClick={() => completeTodo(todo.id)}>   
+or onClick={complete(todo.id)} with const completeTodo = id => () => {   
+
 When separed component: also separate handler in two parts, component sends back something up.  See BlogListFrontend_query_routed BlogForm.jsx  
 
 const notifyWith = useNotify()  
@@ -601,6 +604,7 @@ https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based
 https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
 
 
 
